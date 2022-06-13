@@ -28,6 +28,7 @@ namespace PizzaApp.Controllers
                 PizzaName=entity.PizzaName,
                 PizzaPrice=entity.PizzaPrice
             });
+
             return View(orderModel);
         }
     }

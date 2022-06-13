@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PizzaApp.Models;
 
 namespace PizzaApp.APIControllers
 {
@@ -51,5 +52,18 @@ namespace PizzaApp.APIControllers
             _repository.DeleteOrder(order);
             return true;
         }
+
+        [HttpGet]
+        public int GetFinalPrice(IEnumerable<OrderViewModel> orders)
+        {
+            var sum = 0;
+            foreach (var order in  orders)
+            {
+                sum = (int)(sum + order.PizzaPrice);
+            }
+
+            return sum;
+        }
+
     }
 }

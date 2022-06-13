@@ -20,3 +20,4 @@ function deleteOrder(orderId) {
             alert(data);
         });
 }
+

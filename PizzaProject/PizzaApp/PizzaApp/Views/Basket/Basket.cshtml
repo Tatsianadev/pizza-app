@@ -4,48 +4,50 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+
 <h1 class="headerMenu text-center">Basket</h1>
 <h3 class="text-center">Your order</h3>
 
 <table class="table">
     <thead>
-        <tr>
-            <th>Position</th>
-            <th>Yammy image</th>
-            <th>Pizza name</th>
-            <th>Size</th>
-            <th>Price</th>
-            <th>Edit</th>
-        </tr>
+    <tr>
+        <th>Position</th>
+        <th>Yammy image</th>
+        <th>Pizza name</th>
+        <th>Size</th>
+        <th>Price</th>
+        <th>Edit</th>
+    </tr>
     </thead>
     <tfoot align="center" style="background:darkgray">
-        <tr>
-            <td>Final price</td>
-            <td>price</td>
-        </tr>
+    <tr>
+        <td>Final price</td>
+        <td id="finalPrice">@Model.Select(x => x.PizzaPrice).Sum()</td>
+    </tr>
     </tfoot>
 
     <tbody>
-        @foreach (var order in Model)
-        {
-            var itemImage = "/Content/images/" + (order.PizzaImage);
-            <tr>
-                <th>@order.Id</th>
-                <th>
-                    <img src="@itemImage" alt="" asp-append-version="true" class="orderImage" />
+    @foreach (var order in Model)
+    {
+        var itemImage = "/Content/images/" + (order.PizzaImage);
+        <tr>
+            <th>@order.Id</th>
+            <th>
+                <img src="@itemImage" alt="" asp-append-version="true" class="orderImage" />
 
-                </th>
-                <th>@order.PizzaName</th>
-                <th>Size</th>
-                <th>@order.PizzaPrice</th>
-                <th>
-                    <form>
-                        <button type="submit" class="btn btn-dark" onclick="deleteOrder(@order.Id)">X</button>
-                    </form>
-                </th>
-            </tr>
+            </th>
+            <th>@order.PizzaName</th>
+            <th>Size</th>
+            <th>@order.PizzaPrice</th>
+            <th>
+                <form>
+                    <button type="submit" class="btn btn-dark" onclick="deleteOrder(@order.Id)">X</button>
+                </form>
+            </th>
+        </tr>
 
-        }
+    }
     </tbody>
 
 
