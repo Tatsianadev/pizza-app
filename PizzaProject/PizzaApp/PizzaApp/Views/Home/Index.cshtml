@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="container" style="margin-top:80px">
+        <div class="desk-image">
+            <div class="desk-text-top desk-text-style">
+                <div class="text-center">
+                    <div class="mainText">
+                        <h1 class="display-4 text-capitalize ">Welcome to Pizzeria Big-Bang</h1>
+                        <h2 class="mainTitle">We're glad, that you're with us!</h2>
+                       
+                    </div>
+                  
+                </div>
+            </div>
+            <div class="desk-text-bottom desk-text-style">
+                <div class="text-center">
+                    <div class="mainText">
+
+                        <h3 class="mainTitle">Fast and free pizza delivery!</h3>
+                        <h3 class="mainTitle">The freshest ingredients!</h3>
+                        <h3 class="mainTitle">Cooking for you with love!</h3>
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <a class="btn btn-dark mt-2" href="@Url.Action("Menu","Menu")">Choose the Pizza!</a>
+                </div>
+            </div>
+
+        </div>
+       
+    </div>
+    
+</body>
+<html>

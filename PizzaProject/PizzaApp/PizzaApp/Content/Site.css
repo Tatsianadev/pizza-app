@@ -1,0 +1,121 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.logoStyle {
+    font-style: italic;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    font-palette: dark;
+    text-align: left;
+}
+
+.container-1 {
+    max-width: 1200px;
+    
+    margin: 0px auto;
+}
+
+.navbar-1 {
+    position: relative;
+    min-height: 50px;
+    margin-bottom: 5px;
+    border: 1px solid transparent;
+}
+
+header, nav, main, footer {
+    max-width: 1200px;
+    margin: 0px auto;
+}
+
+@media (min-width: 1200px) {
+    .full-screen {
+        width: 50vw;
+        margin-left: 50%;
+    }
+
+        .full-screen > div {
+            width: 100vw;
+            margin-left: -100%;
+        }
+
+        .full-screen img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+}
+
+.bg-image{
+       background-image: url('images/Pizza_1.jpg');
+       
+}
+
+.desk-image {
+    position: relative; 
+    background: url('images/Pizza_1.jpg');
+    height: 650px;
+    width: 1000px;
+    top: 20px;
+}
+
+.desk-text-top {
+    position: absolute; 
+   top: 30px; 
+    right: 15px; 
+    line-height: 1px;
+}
+
+.desk-text-bottom {
+    position: absolute; 
+    bottom:200px;
+    right: 80px;
+    line-height: 1px;
+}
+
+.desk-text-style {
+    font-style: normal;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    color:white
+   
+   
+}
+.headerMenu{
+    position:absolute;
+    top:150px;
+}
+
+.menuImage {
+    width: 300px;
+    height: 300px;
+}
+
+.inline {
+    display: inline-block; 
+}
+
+.orderImage {
+    width: 150px;
+    height: 150px;
+}

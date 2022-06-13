@@ -1,0 +1,54 @@
+﻿@using PizzaApp.Controllers
+@model IEnumerable<PizzaApp.Models.PizzaViewModel>
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Menu</h2>
+
+<div class="headerMenu text-center">
+    <div class="">
+        <h1 class="display-4 text-capitalize text-dark">Text 1</h1>
+        <h2>Text 2 about delivery</h2>
+        <h2>Text 3 about sales</h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            @foreach (var pizza in Model)
+            {
+                var itemImage = "/Content/images/" + (pizza.ImageFile);
+                <div class="col-md-4">
+                    <div>
+                        <img src="@itemImage" alt="Alternate Text" asp-append-version="true" class="menuImage" />
+                    </div>
+                    <p3 type="text" class="text-capitalize" id="@pizza.PizzaID">@pizza.PizzaName</p3>
+                    <br />
+                    <label>Choose size</label>
+                    <select id="size_@pizza.PizzaID" onchange="getPrice(@pizza.PizzaID)">
+                        <option value="1">small</option>
+                        <option value="2">medium</option>
+                        <option value="3">big</option>
+                    </select>
+                    <br />
+                    <div class="inline">
+                        <div class="" id="price_@pizza.PizzaID">
+                            @pizza.PizzaPriceDefault
+                        </div>
+                        $
+                    </div>
+                    <br/>
+                    <a class="btn btn-dark mt-2" asp-area="" asp-page="" 
+                       onclick="addOrderToDB(@pizza.PizzaID)">Get it!</a>
+                    <div id="check_@pizza.PizzaID"></div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+</div>
+
+
+
