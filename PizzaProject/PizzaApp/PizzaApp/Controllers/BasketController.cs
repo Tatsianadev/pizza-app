@@ -28,8 +28,20 @@ namespace PizzaApp.Controllers
                 PizzaName=entity.PizzaName,
                 PizzaPrice=entity.PizzaPrice
             });
+            var sum = 0;
+            sum = (int)orderModel.Select(x => x.PizzaPrice).Sum();
+            //foreach (var order in orderModel)
+            //{
+            //    sum =(int) (sum + order.PizzaPrice);
+                
+            //}
+            BasketViewModel basketModel=new BasketViewModel()
+            {
+                Orders = orderModel.ToList(),
+                FinalPrice = sum
+            };
 
-            return View(orderModel);
+            return View(basketModel);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PizzaApp.Models.OrderViewModel>
+﻿@model PizzaApp.Models.BasketViewModel
 @{
     ViewBag.Title = "Basket";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,7 @@
 
 
 
-<h1 class="headerMenu text-center">Basket</h1>
+<h1 class="text-center">Basket</h1>
 <h3 class="text-center">Your order</h3>
 
 <table class="table">
@@ -23,12 +23,12 @@
     <tfoot align="center" style="background:darkgray">
     <tr>
         <td>Final price</td>
-        <td id="finalPrice">@Model.Select(x => x.PizzaPrice).Sum()</td>
+        <td id="finalPrice">@Model.FinalPrice</td>
     </tr>
     </tfoot>
 
     <tbody>
-    @foreach (var order in Model)
+    @foreach (var order in Model.Orders)
     {
         var itemImage = "/Content/images/" + (order.PizzaImage);
         <tr>

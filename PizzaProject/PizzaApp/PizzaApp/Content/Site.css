@@ -77,7 +77,7 @@ header, nav, main, footer {
     background: url('images/Pizza_1.jpg');
     height: 650px;
     width: 1000px;
-    top: 20px;
+    top: 5px;
 }
 
 .desk-text-top {
@@ -103,7 +103,7 @@ header, nav, main, footer {
 }
 .headerMenu{
     position:absolute;
-    top:150px;
+    top:70px;
 }
 
 .menuImage {
