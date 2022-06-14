@@ -158,6 +158,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CreatePizzaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Global.asax.cs">
@@ -231,6 +232,7 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Menu\Menu.cshtml" />
     <Content Include="Views\Basket\Basket.cshtml" />
+    <Content Include="Views\CreatePizza\CreatePizza.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

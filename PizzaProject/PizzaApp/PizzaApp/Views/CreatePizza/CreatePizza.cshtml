@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "CreatePizza";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container text-center create-image" >
+   @*<h1 style="color: whitesmoke; font-weight: bold">Create your own pizza!</h1>*@
+    <form method="post" class="mx-auto pt-2 pb-2 bg-light col-4 bg-success p-2 text-white contur bg-opacity-25" style="margin:50px 0 20px">
+        <input type="text" placeholder="Give your pizza a name..." style="margin:10px 0 10px 0" />
+        <br />
+        <div>
+            <label>Choose size</label>
+            <select class="text-dark">
+                <option>small(18sm)</option>
+                <option>medium(25sm)</option>
+                <option>big(32sm)</option>
+            </select>
+            <br />
+        </div>
+        <div>
+            <label>Choose dough thickness</label>
+            <select class="text-dark">
+                <option>tin</option>
+                <option>thick</option>
+            </select>
+            <br />
+        </div>
+
+        <input type="checkbox" placeholder="Tomato" />Tomatoes
+        <br />
+        <input type="checkbox" placeholder="Cheese" />Cheese
+        <br />
+        <input type="checkbox" placeholder="Chiken" />Chicken
+        <br />
+        <input type="checkbox" placeholder="Bekon" />Beckon
+        <br />
+        <input type="checkbox" placeholder="Proshutto" />Prosciutto
+        <br />
+        <input type="checkbox" placeholder="Salami" />Salami
+        <br />
+        <input type="checkbox" placeholder="Mushroom" />Mushroom
+        <br />
+        <input type="checkbox" placeholder="Peperony" />Pepperoni
+        <br />
+        <input type="checkbox" placeholder="Cucumber" />Cucumber
+        <br />
+        <input type="checkbox" placeholder="Oliws" />Olives
+        <br />
+        <input type="checkbox" placeholder="Basil" />Basil
+        <br />
+        <input type="checkbox" placeholder="Onion" />Onion
+        <br />
+        <input type="checkbox" placeholder="Rukkola" />Rucola
+        <br />
+        <button class="btn btn-dark mt-2" type="submit">Create pizza!</button>
+
+    </form>
+</div>
+

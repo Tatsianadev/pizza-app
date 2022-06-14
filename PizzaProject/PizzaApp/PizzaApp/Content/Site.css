@@ -119,3 +119,15 @@ header, nav, main, footer {
     width: 150px;
     height: 150px;
 }
+
+.create-image {
+    position: relative;
+    background: url('images/Pizza_4.jpg');
+    height: 562px;
+    width: 1000px;
+    top: 5px;
+}
+
+.contur {
+    text-shadow: black 0 0 3px;
+}

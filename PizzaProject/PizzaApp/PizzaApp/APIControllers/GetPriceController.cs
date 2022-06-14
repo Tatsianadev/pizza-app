@@ -30,7 +30,7 @@ namespace PizzaApp.APIControllers
 
         [HttpGet]
         [Route("addorder")]
-        public string AddOrderToDb(int pizzaId, int price)
+        public string AddOrderToDb(int pizzaId, int price, string size)
         {
             var pizza = _repository.GetPizza(pizzaId);
             var order = new OrderEntity()
@@ -38,7 +38,8 @@ namespace PizzaApp.APIControllers
                 PizzaId = pizza.PizzaID,
                 PizzaName = pizza.PizzaName,
                 PizzaImage = pizza.ImageFile,
-                PizzaPrice = price
+                PizzaPrice = price,
+                Size = size
             };
             _repository.AddOrder(order);
             return "pizza in basket";
@@ -53,17 +54,7 @@ namespace PizzaApp.APIControllers
             return true;
         }
 
-        [HttpGet]
-        public int GetFinalPrice(IEnumerable<OrderViewModel> orders)
-        {
-            var sum = 0;
-            foreach (var order in  orders)
-            {
-                sum = (int)(sum + order.PizzaPrice);
-            }
-
-            return sum;
-        }
+       
 
     }
 }

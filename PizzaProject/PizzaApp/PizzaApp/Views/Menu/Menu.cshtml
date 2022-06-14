@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Menu</h2>
-
 <div class="text-center">
     <div class="">
-        <h1 class="display-4 text-capitalize text-dark">Text 1</h1>
-        <h2>Text 2 about delivery</h2>
-        <h2>Text 3 about sales</h2>
+        <h1 class="display-4 text-capitalize text-dark" style="margin: 10px 0 10px">Text 1</h1>
+        <h2 style="margin: 5px 0 5px">Text 2 about delivery</h2>
+        <h2 style="margin: 5px 0 5px">Text 3 about sales</h2>
     </div>
+
+    <a class="btn btn-dark mt-2" href="@Url.Action("CreatePizza","CreatePizza")">Create my own pizza!</a>
 
     <div class="container">
         <div class="row">
@@ -32,16 +32,17 @@
                         <option value="3">big</option>
                     </select>
                     <br />
-                    <div class="inline">
-                        <div class="" id="price_@pizza.PizzaID">
+                    <div class="inline" style="width: 10%">
+                        <div class="" style="float: left" id="price_@pizza.PizzaID">
                             @pizza.PizzaPriceDefault
                         </div>
-                        $
+                        <div style="float: left">$</div>
                     </div>
-                    <br/>
-                    <a class="btn btn-dark mt-2" asp-area="" asp-page="" 
+                    <br />
+                    <a class="btn btn-dark mt-2" asp-area="" asp-page=""
                        onclick="addOrderToDB(@pizza.PizzaID)">Get it!</a>
                     <div id="check_@pizza.PizzaID"></div>
+                    <br />
                 </div>
             }
         </div>

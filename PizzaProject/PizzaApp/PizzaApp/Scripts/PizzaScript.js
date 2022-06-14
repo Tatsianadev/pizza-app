@@ -3,12 +3,16 @@
     $.get(`https://localhost:44326/GetPrice/getprice?id=${pizzaId}&size=${size}`,
         function (data) {
             document.getElementById(`price_${pizzaId}`).innerText = data;
+            
         });
 }
 
 function addOrderToDB(pizzaId) {
     var price = document.getElementById(`price_${pizzaId}`).textContent;
-    $.get(`https://localhost:44326/GetPrice/addordertodb?pizzaId=${pizzaId}&price=${price}`,
+    var sizeEl = document.getElementById(`size_${pizzaId}`);
+    var size = sizeEl.options[sizeEl.selectedIndex].text;
+
+    $.get(`https://localhost:44326/GetPrice/addordertodb?pizzaId=${pizzaId}&price=${price}&size=${size}`,
         function(data) {
             document.getElementById(`check_${pizzaId}`).innerText = data;
         });
