@@ -1,0 +1,70 @@
+﻿@model PizzaApp.Models.OrderViewModel
+@{
+    ViewBag.Title = "CreatedPizza";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreatedPizza</h2>
+
+<div class="container text-center create-image">
+        <div class="mx-auto pt-2 pb-2 bg-dark col-4 bg-success p-2 text-white contur bg-opacity-75" style="margin: 30px 0 20px">
+            <table width="100%">
+                <tr >
+                    <td align="right" valign="top" width="100" class="text-white contur" style="font-weight: normal; font-family: cursive">
+                        Pizza name:
+                    </td>
+                    <td align="left"  valign="top" width="100" class="text-white" style="padding:10px 10px" >
+                        @Model.PizzaName
+                    </td>
+                </tr>
+                
+                <tr >
+                    <td align="right" class="text-white contur" style="font-weight: normal; font-family: cursive">
+                        Size:
+                    </td>
+                    <td align="left" width="100" style="padding:10px 10px">
+                        @Model.Size
+                    </td>
+                </tr>
+               
+                <tr >
+                    <td align="right" valign="top"  class="text-white contur" style="font-weight: normal; font-family: cursive">
+                        Ingredients:
+                    </td>
+                    <td align="left"  valign="top" width="100" style="padding:10px 10px">
+                        @foreach (var ingredient in Model.Ingredients)
+                        {
+                            @ingredient.Name;
+                            <br/>
+                        }
+                    </td>
+                </tr>
+                <tr >
+                    <td align="right" class="text-white contur" style="font-weight: normal">
+                        Final price:
+                    </td>
+                    <td align="left" width="100" style="padding:10px 10px">
+                        @Model.PizzaPrice $
+                    </td>
+                </tr>
+               
+
+            </table>
+            <br/>
+            <br/>
+            <div class="text-center">
+                What the awesome Pizza!
+                <br/>
+                You're cool chef!
+            </div>
+            <form>
+                <button class="btn btn-secondary mt-2">Add pizza to order</button>
+                <button class="btn btn-secondary mt-2">Cancel</button>
+            </form>
+            
+
+        </div>
+    
+
+</div>
+

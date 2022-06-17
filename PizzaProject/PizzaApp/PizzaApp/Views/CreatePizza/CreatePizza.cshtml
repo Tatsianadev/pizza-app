@@ -1,61 +1,101 @@
-﻿
+﻿@model PizzaApp.Models.CreatePizzaViewModel
 @{
     ViewBag.Title = "CreatePizza";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-<div class="container text-center create-image" >
-   @*<h1 style="color: whitesmoke; font-weight: bold">Create your own pizza!</h1>*@
-    <form method="post" class="mx-auto pt-2 pb-2 bg-light col-4 bg-success p-2 text-white contur bg-opacity-25" style="margin:50px 0 20px">
-        <input type="text" placeholder="Give your pizza a name..." style="margin:10px 0 10px 0" />
-        <br />
-        <div>
-            <label>Choose size</label>
-            <select class="text-dark">
-                <option>small(18sm)</option>
-                <option>medium(25sm)</option>
-                <option>big(32sm)</option>
-            </select>
-            <br />
-        </div>
-        <div>
-            <label>Choose dough thickness</label>
-            <select class="text-dark">
-                <option>tin</option>
-                <option>thick</option>
-            </select>
-            <br />
-        </div>
+<div class="container text-center create-image">
+  
+    @using (Html.BeginForm("CreatedPizza", "CreatePizza"))
+    {
+        <div class="mx-auto pt-2 pb-2 bg-dark col-4 bg-success p-2 text-white contur bg-opacity-75" style="margin: 30px 0 20px">
+            <table width="100%">
+                <tr>
+                    <td align="right" width="100" class="text-white contur" style="font-weight: normal">
+                        Pizza name
+                    </td>
+                    <td align="left" width="100" class="text-dark" style="padding:5px 10px">
+                        @Html.TextBoxFor(m => m.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" class="text-white contur" style="font-weight: normal">
+                        Choose size
+                    </td>
+                    <td align="left" width="100" style="padding:0 10px">
+                    </td>
+                </tr>
+                @foreach (var size in Model.Size)
+                {
+                    <tr>
+                        <td align="right" class="text-white contur" style="font-weight: normal">
+                        </td>
+                        <td align="left" width="100" style="padding:0 10px">
+                            @Html.RadioButtonFor(m => m.SelectedSize, size.Size)
+                            <label style="font-weight: normal">@size.Size</label>
+                        </td>
+                    </tr>
 
-        <input type="checkbox" placeholder="Tomato" />Tomatoes
-        <br />
-        <input type="checkbox" placeholder="Cheese" />Cheese
-        <br />
-        <input type="checkbox" placeholder="Chiken" />Chicken
-        <br />
-        <input type="checkbox" placeholder="Bekon" />Beckon
-        <br />
-        <input type="checkbox" placeholder="Proshutto" />Prosciutto
-        <br />
-        <input type="checkbox" placeholder="Salami" />Salami
-        <br />
-        <input type="checkbox" placeholder="Mushroom" />Mushroom
-        <br />
-        <input type="checkbox" placeholder="Peperony" />Pepperoni
-        <br />
-        <input type="checkbox" placeholder="Cucumber" />Cucumber
-        <br />
-        <input type="checkbox" placeholder="Oliws" />Olives
-        <br />
-        <input type="checkbox" placeholder="Basil" />Basil
-        <br />
-        <input type="checkbox" placeholder="Onion" />Onion
-        <br />
-        <input type="checkbox" placeholder="Rukkola" />Rucola
-        <br />
-        <button class="btn btn-dark mt-2" type="submit">Create pizza!</button>
+                }
+                <tr>
+                    <td align="right" class="text-white contur" style="font-weight: normal">
+                        Ingredients
+                    </td>
+                    <td align="left" width="100" style="padding:0 10px">
+                    </td>
+                </tr>
 
-    </form>
+                @for (var index = 0; index < Model.Ingredients.Count; index++)
+                {
+                    <tr>
+                        <td align="right" class="text-white contur" style="font-weight: normal">
+                        </td>
+                        <td align="left" width="100" style="padding: 0 10px">
+                            @Html.HiddenFor(model => model.Ingredients[index].Id)
+                            @Html.CheckBoxFor(model => model.Ingredients[index].Ticked)
+                            <label style="font-weight: normal">@Model.Ingredients[index].Name</label>
+                        </td>
+                    </tr>
+
+                }
+
+            </table>
+            
+            <button class="btn btn-secondary mt-2" type="submit">Create pizza!</button>
+
+        </div>
+    }
+
 </div>
 
+
+
+
+@*@foreach (var ingredient in Model.Ingridients)
+        {
+            <tr>
+                <td align="right" class="text-white contur" style="font-weight: normal">
+
+                </td>
+                <td align="left" width="100" style="padding: 0 10px">
+                    @Html.HiddenFor(x=>x.Ingridients[ingredient.Key])
+                    @Html.CheckBoxFor(x => x.Ingridients[ingredient.Key])
+                    <label style="font-weight: normal">@ingredient.Key.Name</label>
+                </td>
+            </tr>
+
+        }*@
+@*@foreach (var ingredient in Model.Ingredients)
+        {
+            <tr>
+                <td align="right" class="text-white contur" style="font-weight: normal">
+
+                </td>
+                <td align="left" width="100" style="padding: 0 10px">
+                    @Html.CheckBoxFor(model => ingredient.Ticked) 
+                    <label style="font-weight: normal">@ingredient.Name</label>
+                </td>
+            </tr>
+
+        }*@

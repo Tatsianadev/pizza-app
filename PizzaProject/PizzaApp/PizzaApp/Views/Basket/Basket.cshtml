@@ -31,8 +31,10 @@
     @foreach (var order in Model.Orders)
     {
         var itemImage = "/Content/images/" + (order.PizzaImage);
+        var counter = @ViewBag.Counter++;
         <tr>
-            <th>@order.Id</th>
+            @*<th>@order.Id</th>*@
+            <th>@counter</th>
             <th>
                 <img src="@itemImage" alt="" asp-append-version="true" class="orderImage"/>
 

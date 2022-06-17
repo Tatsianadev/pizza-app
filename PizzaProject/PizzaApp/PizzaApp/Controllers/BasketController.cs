@@ -37,7 +37,7 @@ namespace PizzaApp.Controllers
                 Orders = orderModel.ToList(),
                 FinalPrice = sum
             };
-
+            ViewBag.Counter = 1;
             return View(basketModel);
         }
     }

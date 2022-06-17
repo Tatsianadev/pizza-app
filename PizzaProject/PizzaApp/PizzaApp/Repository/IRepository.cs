@@ -26,5 +26,17 @@ namespace PizzaApp.Repository
         OrderEntity AddOrder(OrderEntity order);
         bool DeleteOrder(OrderEntity order);
         bool UpdateOrder(OrderEntity oldOrder, OrderEntity newOrder);
+
+        IEnumerable<IngredientEntity> GetAllIngredients();
+        IngredientEntity GetIngredient(int ingredientId);
+        IngredientEntity AddIngredient(IngredientEntity ingredient);
+        bool DeleteIngredient(IngredientEntity ingredient);
+        bool UpdateIngredient(IngredientEntity oldIngredient, IngredientEntity newIngredient);
+
+        IEnumerable<SizeEntity> GetAllSizes();
+        SizeEntity GetSize(int sizeId);
+        SizeEntity AddSize(SizeEntity size);
+        bool DeleteSize(SizeEntity size);
+        bool UpdateSize(SizeEntity oldSize, SizeEntity newSize);
     }
 }

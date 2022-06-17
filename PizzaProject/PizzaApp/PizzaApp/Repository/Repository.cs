@@ -183,6 +183,118 @@ namespace PizzaApp.Repository
             _context.SaveChanges();
             return true;
         }
+
+        //Ingredients
+        public IngredientEntity AddIngredient(IngredientEntity ingredient)
+        {
+            if (ingredient == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.Ingredients.Add(ingredient);
+            _context.SaveChanges();
+            return ingredient;
+        }
+
+        public bool DeleteIngredient(IngredientEntity ingredient)
+        {
+            if (ingredient == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.Ingredients.Remove(ingredient);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public IEnumerable<IngredientEntity> GetAllIngredients()
+        {
+            var igredients = _context.Ingredients.ToList();
+            return igredients;
+        }
+
+        public IngredientEntity GetIngredient(int ingredientId)
+        {
+            var ingerdient = _context.Ingredients.FirstOrDefault(x => x.Id == ingredientId);
+            return ingerdient;
+        }
+
+        public bool UpdateIngredient(IngredientEntity oldIngredient, IngredientEntity newIngredient)
+        {
+            if (newIngredient == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var ud = _context.Ingredients.Find(oldIngredient);
+            if (ud == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.Ingredients.Remove(oldIngredient);
+            _context.Ingredients.Add(newIngredient);
+            _context.SaveChanges();
+            return true;
+        }
+
+        //Size
+        public SizeEntity AddSize(SizeEntity size)
+        {
+            if (size == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.PizzaSize.Add(size);
+            _context.SaveChanges();
+            return size;
+        }
+
+        public bool DeleteSize(SizeEntity size)
+        {
+            if (size == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.PizzaSize.Remove(size);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public IEnumerable<SizeEntity> GetAllSizes()
+        {
+            var sizes = _context.PizzaSize.ToList();
+            return sizes;
+        }
+
+        public SizeEntity GetSize(int sizeId)
+        {
+            var size = _context.PizzaSize.FirstOrDefault(x => x.SizeID == sizeId);
+            return size;
+        }
+
+        public bool UpdateSize(SizeEntity oldSize, SizeEntity newSize)
+        {
+            if (newSize == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var ud = _context.PizzaSize.Find(oldSize);
+            if (ud == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.PizzaSize.Remove(oldSize);
+            _context.PizzaSize.Add(newSize);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
 
