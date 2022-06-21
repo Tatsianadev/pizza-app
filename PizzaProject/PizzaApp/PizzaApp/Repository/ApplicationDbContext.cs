@@ -18,6 +18,8 @@ namespace PizzaApp.Repository
 
         public DbSet<IngredientEntity> Ingredients { get; set; }
 
+        public DbSet<SizesPricesEntity> SizePrice { get; set; }
+
         public ApplicationDbContext() :
             base("PizzaDBEntities")
         {

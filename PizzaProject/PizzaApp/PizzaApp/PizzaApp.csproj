@@ -170,6 +170,7 @@
     <Compile Include="Models\OrderViewModel.cs" />
     <Compile Include="Models\PizzaViewModel.cs" />
     <Compile Include="Models\PriceViewModel.cs" />
+    <Compile Include="Models\SizesPrizesViewModel.cs" />
     <Compile Include="Models\SizeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ApplicationDbContext.cs" />
@@ -178,6 +179,7 @@
     <Compile Include="Repository\Entities\PizzaEntity.cs" />
     <Compile Include="Repository\Entities\PriceEntity.cs" />
     <Compile Include="Repository\Entities\SizeEntity.cs" />
+    <Compile Include="Repository\Entities\SizesPricesEntity.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
@@ -192,6 +194,23 @@
     <Content Include="Content\images\Diavola.jpg" />
     <Content Include="Content\images\Fontana.jpg" />
     <Content Include="Content\images\Gorgonzola.jpg" />
+    <Content Include="Content\images\Ingredients\Basil.jpg" />
+    <Content Include="Content\images\Ingredients\Beckon.jpg" />
+    <Content Include="Content\images\Ingredients\Cheese.jpg" />
+    <Content Include="Content\images\Ingredients\Chicken.jpg" />
+    <Content Include="Content\images\Ingredients\Chili.jpg" />
+    <Content Include="Content\images\Ingredients\Cucumber.jpg" />
+    <Content Include="Content\images\Ingredients\Ham.jpg" />
+    <Content Include="Content\images\Ingredients\Mushroom.jpg" />
+    <Content Include="Content\images\Ingredients\Olives.jpg" />
+    <Content Include="Content\images\Ingredients\Onion.jpg" />
+    <Content Include="Content\images\Ingredients\Pepper.jpg" />
+    <Content Include="Content\images\Ingredients\Pineapple.jpg" />
+    <Content Include="Content\images\Ingredients\Prosciutto.jpg" />
+    <Content Include="Content\images\Ingredients\Rucola.jpg" />
+    <Content Include="Content\images\Ingredients\Salami.jpg" />
+    <Content Include="Content\images\Ingredients\Shrimps.jpg" />
+    <Content Include="Content\images\Ingredients\Tomatoes.jpg" />
     <Content Include="Content\images\Margherita.jpg" />
     <Content Include="Content\images\Montanara.jpg" />
     <Content Include="Content\images\Parmigiana.jpg" />

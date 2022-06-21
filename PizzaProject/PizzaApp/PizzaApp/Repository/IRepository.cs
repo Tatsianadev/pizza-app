@@ -35,8 +35,15 @@ namespace PizzaApp.Repository
 
         IEnumerable<SizeEntity> GetAllSizes();
         SizeEntity GetSize(int sizeId);
+        SizeEntity GetSizeId(string sizeString);
         SizeEntity AddSize(SizeEntity size);
         bool DeleteSize(SizeEntity size);
         bool UpdateSize(SizeEntity oldSize, SizeEntity newSize);
+
+        IEnumerable<SizesPricesEntity> GetAllSizesPrices();
+        SizesPricesEntity GetPriceBySize(string size);
+        SizesPricesEntity AddPriceSize(SizesPricesEntity sizePrice);
+        bool DeletePriceSize(SizesPricesEntity sizePrice);
+        bool UpdatePriceSize(SizesPricesEntity oldSizePrice, SizesPricesEntity newSizePrice);
     }
 }

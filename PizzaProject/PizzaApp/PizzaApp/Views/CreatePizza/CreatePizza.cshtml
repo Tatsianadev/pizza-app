@@ -6,7 +6,7 @@
 
 
 <div class="container text-center create-image">
-  
+
     @using (Html.BeginForm("CreatedPizza", "CreatePizza"))
     {
         <div class="mx-auto pt-2 pb-2 bg-dark col-4 bg-success p-2 text-white contur bg-opacity-75" style="margin: 30px 0 20px">
@@ -20,48 +20,63 @@
                     </td>
                 </tr>
                 <tr>
-                    <td align="right" class="text-white contur" style="font-weight: normal">
+                    <td align="right" valign="top" class="text-white contur" style="font-weight: normal">
                         Choose size
                     </td>
-                    <td align="left" width="100" style="padding:0 10px">
+                    <td align="left" width="100" style="padding: 0 10px">
+                        @foreach (var size in Model.SizePrice)
+                        {
+                            // @Html.RadioButtonFor(m => m.SelectedSize, size.Size, new { Name="radio"} )
+                            @Html.RadioButtonFor(m => m.SelectedSize, size.Size, new Dictionary<string, object> {
+                       { "onclick", String.Format("CountPrice()") },{ "Name", "SelectedSize"} })
+                            <label style="font-weight: normal">@size.Size</label>
+                            <br />
+                        }
                     </td>
                 </tr>
-                @foreach (var size in Model.Size)
-                {
-                    <tr>
-                        <td align="right" class="text-white contur" style="font-weight: normal">
-                        </td>
-                        <td align="left" width="100" style="padding:0 10px">
-                            @Html.RadioButtonFor(m => m.SelectedSize, size.Size)
-                            <label style="font-weight: normal">@size.Size</label>
-                        </td>
-                    </tr>
 
-                }
+
                 <tr>
-                    <td align="right" class="text-white contur" style="font-weight: normal">
+                    <td align="right" valign="top" class="text-white contur" style="font-weight: normal">
                         Ingredients
                     </td>
-                    <td align="left" width="100" style="padding:0 10px">
+                    <td align="left" width="100" style="padding: 0 10px">
+                        @for (var index = 0; index < Model.Ingredients.Count; index++)
+                        {
+                            //var itemImage = "/Content/images/Ingredients/" + (@Model.Ingredients[index].Image);
+                            @Html.HiddenFor(model => model.Ingredients[index].Id)
+                            @Html.CheckBoxFor(model => model.Ingredients[index].Ticked, new Dictionary<string, object>{
+                            {"onclick", String.Format("CountPrice()") },
+                           { "id", Model.Ingredients[index].Id} })
+                            @*<img src="@itemImage" alt="Alternate Text" style="width:15px; height:15px"/>*@
+                            <label style="font-weight: normal">@Model.Ingredients[index].Name</label>
+                            <label style="font-weight: normal">@Model.Ingredients[index].Price$</label>
+                            <br />
+
+                        }
                     </td>
                 </tr>
-
-                @for (var index = 0; index < Model.Ingredients.Count; index++)
-                {
-                    <tr>
-                        <td align="right" class="text-white contur" style="font-weight: normal">
-                        </td>
-                        <td align="left" width="100" style="padding: 0 10px">
-                            @Html.HiddenFor(model => model.Ingredients[index].Id)
-                            @Html.CheckBoxFor(model => model.Ingredients[index].Ticked)
-                            <label style="font-weight: normal">@Model.Ingredients[index].Name</label>
-                        </td>
-                    </tr>
-
-                }
+                <tr>
+                    <td align="right" width="100" class="text-white contur" style="font-weight: normal">
+                        Pizza costs:
+                    </td>
+                    <td id="CurrentPrice" align="left" width="100" class="text-white" style="padding:5px 10px">
+                        @Model.FinalPrice
+                    </td>
+                    
+                </tr>
+                <tr>
+                    <td align="right" width="100" class="text-white contur" style="font-weight: normal">
+                      
+                    </td>
+                <td align="left" width="100" class="text-dark" style="padding:5px 10px; visibility:hidden">
+                    @Html.TextBoxFor(m => m.FinalPrice)
+                </td>
+                </tr>
 
             </table>
-            
+           
+
             <button class="btn btn-secondary mt-2" type="submit">Create pizza!</button>
 
         </div>
@@ -73,29 +88,29 @@
 
 
 @*@foreach (var ingredient in Model.Ingridients)
-        {
-            <tr>
-                <td align="right" class="text-white contur" style="font-weight: normal">
+    {
+        <tr>
+            <td align="right" class="text-white contur" style="font-weight: normal">
 
-                </td>
-                <td align="left" width="100" style="padding: 0 10px">
-                    @Html.HiddenFor(x=>x.Ingridients[ingredient.Key])
-                    @Html.CheckBoxFor(x => x.Ingridients[ingredient.Key])
-                    <label style="font-weight: normal">@ingredient.Key.Name</label>
-                </td>
-            </tr>
+            </td>
+            <td align="left" width="100" style="padding: 0 10px">
+                @Html.HiddenFor(x=>x.Ingridients[ingredient.Key])
+                @Html.CheckBoxFor(x => x.Ingridients[ingredient.Key])
+                <label style="font-weight: normal">@ingredient.Key.Name</label>
+            </td>
+        </tr>
 
-        }*@
+    }*@
 @*@foreach (var ingredient in Model.Ingredients)
-        {
-            <tr>
-                <td align="right" class="text-white contur" style="font-weight: normal">
+    {
+        <tr>
+            <td align="right" class="text-white contur" style="font-weight: normal">
 
-                </td>
-                <td align="left" width="100" style="padding: 0 10px">
-                    @Html.CheckBoxFor(model => ingredient.Ticked) 
-                    <label style="font-weight: normal">@ingredient.Name</label>
-                </td>
-            </tr>
+            </td>
+            <td align="left" width="100" style="padding: 0 10px">
+                @Html.CheckBoxFor(model => ingredient.Ticked)
+                <label style="font-weight: normal">@ingredient.Name</label>
+            </td>
+        </tr>
 
-        }*@
+    }*@

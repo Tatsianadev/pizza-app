@@ -8,11 +8,14 @@ namespace PizzaApp.Models
     public class CreatePizzaViewModel
     {
         public string Name { get; set; }
-        public List<SizeViewModel> Size { get; set; }
+        //public List<SizeViewModel> Size { get; set; }
+
+        public List<SizesPrizesViewModel> SizePrice { get; set; }
 
         public string SelectedSize { get; set; }
         public List<IngredientViewModel> Ingredients { get; set; }
         //public Dictionary<IngredientViewModel,bool> Ingridients { get; set; }
         public int FinalPrice { get; set; }
+       
     }
 }

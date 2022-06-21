@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using PizzaApp.Models;
+using System.Configuration;
 
 namespace PizzaApp.APIControllers
 {
@@ -54,7 +55,75 @@ namespace PizzaApp.APIControllers
             return true;
         }
 
+        [HttpGet]
+        public int CountPrice(List<int> arrId, string size)
+        {
+            var price = _repository.GetPriceBySize(size).Price;
+
+            if (arrId!=null)
+            {
+                foreach (var item in arrId)
+                {
+                    var ingredient = _repository.GetIngredient(item);
+                    price += ingredient.Price;
+                }
+            }
+                      
+          
+            return price;
+        }
+
        
+
+
+
+        [HttpGet]
+        public (int,int) CountPriceBySize(string size, int sizeBefore, int price)
+        {
+            var config = ConfigurationManager.AppSettings.Get("defaultPrice");
+
+            var sizeElement = _repository.GetSizeId(size);
+            var sizeId = sizeElement.SizeID;
+
+            
+
+
+            if (sizeId!= sizeBefore)
+            {
+                if (sizeId> sizeBefore)
+                {
+                    if (sizeId- sizeBefore == 1)
+                    {
+                        price += 1;
+                    }
+                    if (sizeId - sizeBefore == 2)
+                    {
+                        price += 2;
+                    }
+
+                }
+                if (sizeId<sizeBefore)
+                {
+                    if (sizeBefore - sizeId==1)
+                    {
+                        price -= 1;
+                    }
+                    if (sizeBefore - sizeId == 2)
+                    {
+                        price -= 2;
+                    }
+                }
+
+            }
+
+            sizeBefore = sizeId;
+            //var data = new List<int>();
+            //data.Add(price);
+            //data.Add(sizeBefore);
+
+            return (price,sizeBefore);
+
+        }
 
     }
 }

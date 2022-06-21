@@ -19,12 +19,13 @@ namespace PizzaApp.Controllers
         // GET: CreatePizza
         public ActionResult CreatePizza()
         {
-            var sizesEntity = _repository.GetAllSizes();
-            var sizes = sizesEntity.Select(entity => new SizeViewModel()
+            var sizesPricesEntity = _repository.GetAllSizesPrices();
+            var sizePrice = sizesPricesEntity.Select(entity => new SizesPrizesViewModel()
             {
-                SizeID = entity.SizeID,
-                Size = entity.Size
-            });
+                Id = entity.Id,
+                Size = entity.Size,
+                Price=entity.Price
+            }).ToList();
 
             var ingredientsEntity = _repository.GetAllIngredients();
             var ingredients = ingredientsEntity.Select(entity => new IngredientViewModel()
@@ -46,8 +47,9 @@ namespace PizzaApp.Controllers
 
             CreatePizzaViewModel createModel = new CreatePizzaViewModel()
             {
-                Size = sizes.ToList(),
-                Ingredients = ingredients
+                SizePrice = sizePrice,
+                Ingredients = ingredients,
+                FinalPrice=sizePrice.FirstOrDefault(x=>x.Size=="small").Price
             };
             
             
@@ -57,16 +59,9 @@ namespace PizzaApp.Controllers
         [HttpPost]
         public ActionResult CreatedPizza(CreatePizzaViewModel createdPizza)
         {
-            var totalPrice = 3;
+            var totalPrice = createdPizza.FinalPrice;
 
-            if (createdPizza.SelectedSize=="medium")
-            {
-                totalPrice += 1;
-            }
-            if (createdPizza.SelectedSize == "big")
-            {
-                totalPrice += 2;
-            }
+            
 
             var selectedIngredients=new List<IngredientViewModel>();
 
@@ -75,7 +70,7 @@ namespace PizzaApp.Controllers
                 if (ingredient.Ticked == true)
                 {
                     var dataIngredient = _repository.GetIngredient(ingredient.Id);
-                    totalPrice += dataIngredient.Price;
+                   // totalPrice += dataIngredient.Price;
                     var selectedIngredient=new IngredientViewModel()
                     {
                         Id=dataIngredient.Id,

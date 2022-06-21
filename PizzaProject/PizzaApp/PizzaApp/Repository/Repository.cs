@@ -277,6 +277,12 @@ namespace PizzaApp.Repository
             return size;
         }
 
+        public SizeEntity GetSizeId(string sizeString)
+        {
+            var size = _context.PizzaSize.FirstOrDefault(x => x.Size == sizeString);
+            return size;
+        }
+
         public bool UpdateSize(SizeEntity oldSize, SizeEntity newSize)
         {
             if (newSize == null)
@@ -292,6 +298,64 @@ namespace PizzaApp.Repository
 
             _context.PizzaSize.Remove(oldSize);
             _context.PizzaSize.Add(newSize);
+            _context.SaveChanges();
+            return true;
+        }
+
+
+        //SizePrice
+        public SizesPricesEntity AddPriceSize(SizesPricesEntity sizePrice)
+        {
+            if (sizePrice == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.SizePrice.Add(sizePrice);
+            _context.SaveChanges();
+            return sizePrice;
+        }
+
+        public bool DeletePriceSize(SizesPricesEntity sizePrice)
+        {
+            if (sizePrice == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.SizePrice.Remove(sizePrice);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public IEnumerable<SizesPricesEntity> GetAllSizesPrices()
+        {
+            var sizesPrices = _context.SizePrice.ToList();
+            return sizesPrices;
+        }
+
+        public SizesPricesEntity GetPriceBySize(string size)
+        {
+            var price = _context.SizePrice.FirstOrDefault(x => x.Size == size);
+            return price;
+        }
+
+        
+        public bool UpdatePriceSize(SizesPricesEntity oldSizePrice, SizesPricesEntity newSizePrice)
+        {
+            if (newSizePrice == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var ud = _context.SizePrice.Find(oldSizePrice);
+            if (ud == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.SizePrice.Remove(oldSizePrice);
+            _context.SizePrice.Add(newSizePrice);
             _context.SaveChanges();
             return true;
         }
