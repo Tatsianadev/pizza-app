@@ -125,5 +125,21 @@ namespace PizzaApp.APIControllers
 
         }
 
+        [HttpPost]
+
+        public string AddCreatedPizzaToOrder(int Id, int PizzaId, string Name, string Size, int Price)
+        {
+            var createdPizza = new OrderEntity()
+            {
+                Id = Id,
+                PizzaId = PizzaId,
+                PizzaName = Name,
+                PizzaImage = "Create.jpg",
+                Size = Size,
+                PizzaPrice = Price
+            };
+            _repository.AddOrder(createdPizza);
+            return "pizza added to order";
+        }
     }
 }

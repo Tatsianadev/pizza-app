@@ -72,43 +72,20 @@ function CountPrice() {
 
 
 
-
-//function GetPriceBySize() {
-    
-//    var radios = document.querySelectorAll('input[Name="radio"]');
-//    for (var i = 0, max = radios.length; i < max; i++) {
-//        radios[i].addEventListener("click",
-//            function () {
-//                var size = this.value;
-//                var basePrice = document.getElementById("CurrentPrice").textContent;
-//                var sizeBefore = document.getElementById("sizeBefore").textContent;
-//                $.get(`https://localhost:44326/GetPrice/countpricebysize?size=${size}&sizeBefore=${sizeBefore}&price=${basePrice}`,
-//                    function (data) {
-//                        var originalData = data;
-//                        var price = originalData.slice(1, originalData.length - 4);
-//                        alert(price);
-//                        var sizeBefore = data[data.length - 2];
-//                        alert(sizeBefore);
-//                        document.getElementById("CurrentPrice").innerText = price;
-//                        document.getElementById("sizeBefore").innerText = sizeBefore;
-//                    });
-//            });
-
-//    }
-//}
-
-function GetPriceBySize() {
-    var size = this.value;
-    var basePrice = document.getElementById("CurrentPrice").textContent;
-    var sizeBefore = document.getElementById("sizeBefore").textContent;
-    $.get(`https://localhost:44326/GetPrice/countpricebysize?size=${size}&sizeBefore=${sizeBefore}&price=${basePrice}`,
-        function (data) {
-            var originalData = data;
-            var price = originalData.slice(1, originalData.length - 4);
-            alert(price);
-            var sizeBefore = data[data.length - 2];
-            alert(sizeBefore);
-            document.getElementById("CurrentPrice").innerText = price;
-            document.getElementById("sizeBefore").innerText = sizeBefore;
+function AddCreatedPizzaToOrder(id, idPizza) {
+    //var id = document.getElementById("id_order").textContent;
+    var id = id;
+    //var idPizza = document.getElementById("id_pizza").textContent;
+    var idPizza = idPizza;
+    //var image = image;
+    var name = document.getElementById("name").textContent;
+    var size = document.getElementById("size").textContent;
+    var price = document.getElementById("price").textContent;
+    alert(id);
+    $.post(`https://localhost:44326/GetPrice/addcreatedpizzatoorder`,
+        { Id: id, PizzaId: idPizza, Name: name, Size: size, Price: price }).
+        done(function (data) {
+            alert(data);
         });
+
 }

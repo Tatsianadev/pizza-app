@@ -84,8 +84,8 @@ namespace PizzaApp.Controllers
 
             var customerPizza = new OrderViewModel()
             {
-                Id = (_repository.GetAllOrders().Last().Id) + 1,
-                PizzaId = (_repository.GetAllPizzas().Last().PizzaID) + 1,
+                Id = ++(_repository.GetAllOrders().Last().Id),
+                PizzaId = ++(_repository.GetAllPizzas().Last().PizzaID) + (_repository.GetAllOrders().Last().Id),
                 PizzaName = createdPizza.Name,
                 PizzaImage = "Bismarck.jpg",
                 Size = createdPizza.SelectedSize,
