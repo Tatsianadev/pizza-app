@@ -17,6 +17,10 @@
                     </td>
                     <td align="left" width="100" class="text-dark" style="padding:5px 10px">
                         @Html.TextBoxFor(m => m.Name)
+                        @*@Html.EditorFor(m=>m.Name)*@
+                        <br />
+                        <span style="color:darksalmon">@Html.ValidationMessageFor(m => m.Name)</span>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -30,8 +34,9 @@
                             @Html.RadioButtonFor(m => m.SelectedSize, size.Size, new Dictionary<string, object> {
                        { "onclick", String.Format("CountPrice()") },{ "Name", "SelectedSize"} })
                             <label style="font-weight: normal">@size.Size</label>
-                            <br />
                         }
+                        <br />
+                        <span style="color:darksalmon">@Html.ValidationMessageFor(m => m.SelectedSize)</span>
                     </td>
                 </tr>
 

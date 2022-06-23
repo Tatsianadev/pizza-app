@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -59,41 +60,47 @@ namespace PizzaApp.Controllers
         [HttpPost]
         public ActionResult CreatedPizza(CreatePizzaViewModel createdPizza)
         {
-            var totalPrice = createdPizza.FinalPrice;
-
-            
-
-            var selectedIngredients=new List<IngredientViewModel>();
-
-            foreach (var ingredient in createdPizza.Ingredients)
+            if (ModelState.IsValid)
             {
-                if (ingredient.Ticked == true)
+                var totalPrice = createdPizza.FinalPrice;
+
+
+
+                var selectedIngredients = new List<IngredientViewModel>();
+
+                foreach (var ingredient in createdPizza.Ingredients)
                 {
-                    var dataIngredient = _repository.GetIngredient(ingredient.Id);
-                   // totalPrice += dataIngredient.Price;
-                    var selectedIngredient=new IngredientViewModel()
+                    if (ingredient.Ticked == true)
                     {
-                        Id=dataIngredient.Id,
-                        Name = dataIngredient.Name,
-                        Image = dataIngredient.Image
-                    };
-                   
-                   selectedIngredients.Add(selectedIngredient);
+                        var dataIngredient = _repository.GetIngredient(ingredient.Id);
+                        // totalPrice += dataIngredient.Price;
+                        var selectedIngredient = new IngredientViewModel()
+                        {
+                            Id = dataIngredient.Id,
+                            Name = dataIngredient.Name,
+                            Image = dataIngredient.Image
+                        };
+
+                        selectedIngredients.Add(selectedIngredient);
+                    }
                 }
+
+                var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
+                var customerPizza = new OrderViewModel()
+                {
+                    Id = ++(_repository.GetAllOrders().Last().Id),
+                    PizzaId = ++(_repository.GetAllPizzas().Last().PizzaID) + (_repository.GetAllOrders().Last().Id),
+                    PizzaName = createdPizza.Name,
+                    //PizzaImage = "Bismarck.jpg",
+                    PizzaImage = createdPizzaImage,
+                    Size = createdPizza.SelectedSize,
+                    PizzaPrice = totalPrice,
+                    Ingredients = selectedIngredients
+                };
+
+                return View(customerPizza);
             }
-
-            var customerPizza = new OrderViewModel()
-            {
-                Id = ++(_repository.GetAllOrders().Last().Id),
-                PizzaId = ++(_repository.GetAllPizzas().Last().PizzaID) + (_repository.GetAllOrders().Last().Id),
-                PizzaName = createdPizza.Name,
-                PizzaImage = "Bismarck.jpg",
-                Size = createdPizza.SelectedSize,
-                PizzaPrice = totalPrice,
-                Ingredients = selectedIngredients
-            };
-
-            return View(customerPizza);
+            return View("CreatePizza");
         }
     }
 }

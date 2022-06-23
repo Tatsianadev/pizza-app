@@ -68,73 +68,24 @@ namespace PizzaApp.APIControllers
                     price += ingredient.Price;
                 }
             }
-                      
-          
+         
             return price;
         }
 
-       
-
-
-
-        [HttpGet]
-        public (int,int) CountPriceBySize(string size, int sizeBefore, int price)
-        {
-            var config = ConfigurationManager.AppSettings.Get("defaultPrice");
-
-            var sizeElement = _repository.GetSizeId(size);
-            var sizeId = sizeElement.SizeID;
-
-            
-
-
-            if (sizeId!= sizeBefore)
-            {
-                if (sizeId> sizeBefore)
-                {
-                    if (sizeId- sizeBefore == 1)
-                    {
-                        price += 1;
-                    }
-                    if (sizeId - sizeBefore == 2)
-                    {
-                        price += 2;
-                    }
-
-                }
-                if (sizeId<sizeBefore)
-                {
-                    if (sizeBefore - sizeId==1)
-                    {
-                        price -= 1;
-                    }
-                    if (sizeBefore - sizeId == 2)
-                    {
-                        price -= 2;
-                    }
-                }
-
-            }
-
-            sizeBefore = sizeId;
-            //var data = new List<int>();
-            //data.Add(price);
-            //data.Add(sizeBefore);
-
-            return (price,sizeBefore);
-
-        }
+        
 
         [HttpPost]
 
         public string AddCreatedPizzaToOrder(int Id, int PizzaId, string Name, string Size, int Price)
         {
+           
+            var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
             var createdPizza = new OrderEntity()
             {
                 Id = Id,
                 PizzaId = PizzaId,
                 PizzaName = Name,
-                PizzaImage = "Create.jpg",
+                PizzaImage = createdPizzaImage,
                 Size = Size,
                 PizzaPrice = Price
             };

@@ -15,5 +15,13 @@ namespace PizzaApp.Controllers
 
     }
 
+    public class ContactController : Controller
+    {
+        // GET: Contact
+        public ActionResult Contact()
+        {
+            return View();
+        }
+    }
 
 }
