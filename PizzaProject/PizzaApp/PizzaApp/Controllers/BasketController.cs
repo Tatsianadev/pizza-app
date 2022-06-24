@@ -40,5 +40,10 @@ namespace PizzaApp.Controllers
             ViewBag.Counter = 1;
             return View(basketModel);
         }
+
+        public ActionResult ThankYou()
+        {
+            return View();
+        }
     }
 }

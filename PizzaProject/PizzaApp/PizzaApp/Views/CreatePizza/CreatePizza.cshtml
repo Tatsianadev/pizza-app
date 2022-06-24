@@ -5,11 +5,11 @@
 }
 
 
-<div class="container text-center create-image" >
+<div class="container text-center create-image" @*style="position:relative; height:750px"*@>
 
     @using (Html.BeginForm("CreatedPizza", "CreatePizza"))
     {
-        <div class="mx-auto pt-2 pb-2 bg-dark col-4 bg-success p-2 text-white contur bg-opacity-75" style="margin: 30px 0 20px">
+        <div class="mx-auto pt-2 pb-2 bg-dark col-4 bg-success p-2 text-white contur bg-opacity-75" style="margin: 30px 0 20px" @*style="position:absolute; right:150px"*@>
             <table width="100%">
                 <tr>
                     <td align="right" width="100" class="text-white contur" style="font-weight: normal">
@@ -34,6 +34,7 @@
                             @Html.RadioButtonFor(m => m.SelectedSize, size.Size, new Dictionary<string, object> {
                        { "onclick", String.Format("CountPrice()") },{ "Name", "SelectedSize"} })
                             <label style="font-weight: normal">@size.Size</label>
+                            <br />
                         }
                         <br />
                         <span style="color:darksalmon">@Html.ValidationMessageFor(m => m.SelectedSize)</span>

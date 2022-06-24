@@ -10,50 +10,53 @@
 
 <table class="table">
     <thead>
-    <tr>
-        <th>Position</th>
-        <th>Yammy image</th>
-        <th>Pizza name</th>
-        <th>Size</th>
-        <th>Price</th>
-        <th>Delete from Basket</th>
-    </tr>
+        <tr>
+            <th>Position</th>
+            <th>Yammy image</th>
+            <th>Pizza name</th>
+            <th>Size</th>
+            <th>Price</th>
+            <th>Delete from Basket</th>
+        </tr>
     </thead>
     <tfoot align="center" style="background:darkgray">
-    <tr>
-        <td style="font-size: large; font-weight: bold ">Final price</td>
-        <td style="font-size: large; font-weight: bold " id="finalPrice">@Model.FinalPrice $</td>
-    </tr>
+        <tr>
+            <td style="font-size: medium; font-weight: bold ">Final price</td>
+            <td style="font-size: medium; font-weight: bold " id="finalPrice">@Model.FinalPrice $</td>
+        </tr>
     </tfoot>
 
     <tbody>
-   
-    @foreach (var order in Model.Orders)
-    {
-        var itemImage = "/Content/images/" + (order.PizzaImage);
-        var counter = @ViewBag.Counter++;
-        <tr>
-            @*<th>@order.Id</th>*@
-            <th>@counter</th>
-            <th>
-                <img src="@itemImage" alt="" asp-append-version="true" class="orderImage"/>
 
-            </th>
-            <th>@order.PizzaName</th>
-            <th>@order.Size</th>
-            <th>@order.PizzaPrice $</th>
-            <th>
-                <form>
-                    <button type="submit" class="btn btn-dark" onclick="deleteOrder(@order.Id)">X</button>
-                </form>
-            </th>
-        </tr>
+        @foreach (var order in Model.Orders)
+        {
+            var itemImage = "/Content/images/" + (order.PizzaImage);
+            var counter = @ViewBag.Counter++;
+            <tr>
+                @*<th>@order.Id</th>*@
+                <th>@counter</th>
+                <th>
+                    <img src="@itemImage" alt="" asp-append-version="true" class="orderImage" />
 
-    }
+                </th>
+                <th>@order.PizzaName</th>
+                <th>@order.Size</th>
+                <th>@order.PizzaPrice $</th>
+                <th>
+                    <form>
+                        <button type="submit" class="btn btn-dark" onclick="deleteOrder(@order.Id)">X</button>
+                    </form>
+                </th>
+            </tr>
+
+        }
     </tbody>
 
 
 </table>
+<div class="d-grid gap-2 col-6 mx-auto">
+    <a href="@Url.Action("ThankYou","Basket")" class="btn btn-dark mt-2">Confirm order</a>
+    </div>
 
 
 

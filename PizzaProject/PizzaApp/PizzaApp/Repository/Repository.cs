@@ -359,6 +359,63 @@ namespace PizzaApp.Repository
             _context.SaveChanges();
             return true;
         }
+
+        //CustomerData
+        public CustomerDataEntity AddCustomerData(CustomerDataEntity customerData)
+        {
+            if (customerData == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.CustomerData.Add(customerData);
+            _context.SaveChanges();
+            return customerData;
+        }
+
+        public bool DeleteCustomerData(CustomerDataEntity customerData)
+        {
+            if (customerData == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.CustomerData.Remove(customerData);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public IEnumerable<CustomerDataEntity> GetAllCustomersData()
+        {
+            var customersData = _context.CustomerData.ToList();
+            return customersData;
+        }
+
+        public CustomerDataEntity GetCustomerData(int id)
+        {
+            var customer = _context.CustomerData.FirstOrDefault(x => x.Id == id);
+            return customer;
+        }
+
+
+        public bool UpdateCustomerData(CustomerDataEntity oldCustomerData, CustomerDataEntity newCustomerData)
+        {
+            if (newCustomerData == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var ud = _context.CustomerData.Find(oldCustomerData);
+            if (ud == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.CustomerData.Remove(oldCustomerData);
+            _context.CustomerData.Add(newCustomerData);
+            _context.SaveChanges();
+            return true;
+        }
     }
 }
 

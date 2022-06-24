@@ -132,3 +132,11 @@ header, nav, main, footer {
 .contur {
     text-shadow: black 0 0 3px;
 }
+
+.wallpaper {
+    background: url('images/wallpaper.jpg');
+    background-size: contain;
+}
+table{
+
+}
