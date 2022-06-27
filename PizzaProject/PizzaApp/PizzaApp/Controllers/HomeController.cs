@@ -27,42 +27,42 @@ namespace PizzaApp.Controllers
             return View();
         }
 
-        public ActionResult Register()
-        {
+        //public ActionResult Register()
+        //{
             
-            return View();
-        }
+        //    return View();
+        //}
 
-        [HttpPost]
-        [AllowAnonymous]
-        public ActionResult Register(CustomerViewModel customer)
-        {
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    var customerEntity = new CustomerDataEntity()
-                    {
-                        Name = customer.Name,
-                        Login = customer.Login,
-                        Password=customer.Password,
-                        Address=customer.Address,
-                        Phone=customer.Phone,
-                        Email=customer.Email
-                    };
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public ActionResult Register(CustomerViewModel customer)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        try
+        //        {
+        //            var customerEntity = new CustomerDataEntity()
+        //            {
+        //                Name = customer.Name,
+        //                Login = customer.Login,
+        //                Password=customer.Password,
+        //                Address=customer.Address,
+        //                Phone=customer.Phone,
+        //                Email=customer.Email
+        //            };
 
-                    return RedirectToAction("Index", "Home");
-                }
-                catch (Exception)
-                {
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        catch (Exception)
+        //        {
 
-                    throw;
-                }
+        //            throw;
+        //        }
 
-            }
+        //    }
 
-            return View(customer);
-        }
+        //    return View(customer);
+        //}
 
     }
 

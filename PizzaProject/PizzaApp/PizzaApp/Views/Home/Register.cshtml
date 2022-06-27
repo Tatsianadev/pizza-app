@@ -34,7 +34,10 @@
             <table>
                 <tr>
                     <td>User Name</td>
-                    <td align="left">@Html.TextBoxFor(m => m.Name)</td>
+                    <td align="left">
+                        @Html.TextBoxFor(m => m.Name)
+                        @Html.ValidationMessageFor(m=>m.Name)
+                    </td>
                 </tr>
                 <tr>
                     <td>Login</td>
