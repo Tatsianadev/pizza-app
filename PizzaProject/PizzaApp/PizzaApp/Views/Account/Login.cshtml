@@ -1,0 +1,30 @@
+﻿@model PizzaApp.Models.Identity.LoginModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary()
+        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl"/>
+        <p>
+            <label>Email</label>
+            <br/>
+            @Html.EditorFor(m=>m.Email)
+        </p>
+        <p>
+            <label>Password</label>
+            <br/>
+            @Html.EditorFor(m=>m.Password)
+        </p>
+        <p>
+            <button type="submit">Log in</button>
+        </p>
+    </div>
+}

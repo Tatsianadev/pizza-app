@@ -197,6 +197,7 @@
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Models\Identity\LoginModel.cs" />
     <Compile Include="Models\Identity\RegisterModel.cs" />
     <Compile Include="Models\IngredientViewModel.cs" />
     <Compile Include="Models\OrderViewModel.cs" />
@@ -298,6 +299,7 @@
     <Content Include="Views\CreatePizza\CreatedPizza.cshtml" />
     <Content Include="Views\Basket\ThankYou.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
