@@ -197,6 +197,7 @@
     <Compile Include="Models\CustomerViewModel.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Models\Identity\EditModel.cs" />
     <Compile Include="Models\Identity\LoginModel.cs" />
     <Compile Include="Models\Identity\RegisterModel.cs" />
     <Compile Include="Models\IngredientViewModel.cs" />
@@ -300,6 +301,8 @@
     <Content Include="Views\Basket\ThankYou.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Delete.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

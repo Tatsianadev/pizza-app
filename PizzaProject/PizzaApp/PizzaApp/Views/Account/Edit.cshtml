@@ -1,0 +1,23 @@
+﻿@model PizzaApp.Models.Identity.EditModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit profile</h2>
+
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+<div>
+    @Html.ValidationSummary(true,"")
+    <div>
+        <p>New Email:@Html.EditorFor(m=>m.Email)</p>
+    </div>
+    <div>
+        <div>
+            <input type="submit"  value="Save changes" />
+        </div>
+    </div>
+</div>
+}

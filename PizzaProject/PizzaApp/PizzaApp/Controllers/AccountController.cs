@@ -76,7 +76,7 @@ namespace PizzaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                ApplicationUser user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user==null)
                 {
                     ModelState.AddModelError("", "Invalid password");
@@ -110,5 +110,62 @@ namespace PizzaApp.Controllers
             return RedirectToAction("Login");
         }
 
+        public ActionResult Delete()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("Delete")]
+        public async Task<ActionResult> DeleteComfirmed()
+        {
+            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            if (user!=null)
+            {
+                IdentityResult result = await UserManager.DeleteAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Login", "Account");
+                }
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public async Task<ActionResult> Edit()
+        {
+            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            if (user!=null)
+            {
+                EditModel model = new EditModel() { Email = user.Email };
+                return View(model);
+            }
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        [ActionName("Edit")]
+        public async Task<ActionResult> Edit(EditModel model)
+        {
+            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            if (user!=null)
+            {
+                user.Email = model.Email;
+                IdentityResult result = await UserManager.UpdateAsync(user);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Failed to make changes. Try again");
+                }
+                
+            }
+            else
+            {
+                ModelState.AddModelError("", "User didn't find");
+            }
+            return View(model);
+        }
     }
 }
