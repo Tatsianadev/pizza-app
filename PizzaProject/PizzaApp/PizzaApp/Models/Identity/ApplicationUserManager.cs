@@ -12,7 +12,8 @@ namespace PizzaApp.Models.Identity
 {
     public class ApplicationUserManager:UserManager<ApplicationUser>
     {
-        public ApplicationUserManager(IUserStore<ApplicationUser> store):base(store)
+        public ApplicationUserManager(IUserStore<ApplicationUser> store)
+            :base(store)
         {
             
         }
@@ -20,8 +21,8 @@ namespace PizzaApp.Models.Identity
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options,
             IOwinContext context)
         {
-            AppIdentityDbContext db = context.Get<AppIdentityDbContext>();
-            ApplicationUserManager manager=new ApplicationUserManager(new UserStore<ApplicationUser>(db));
+            ApplicationDbContext db = context.Get<ApplicationDbContext>();
+            ApplicationUserManager manager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
             return manager;
         }
     }

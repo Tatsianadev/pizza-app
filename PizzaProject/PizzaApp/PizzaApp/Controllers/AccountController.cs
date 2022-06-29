@@ -38,7 +38,7 @@ namespace PizzaApp.Controllers
                     Email = model.Email
                     
                 };
-                IdentityResult result=await UserManager.CreateAsync(user, model.Password);
+                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     //return RedirectToAction("Login", "Account");

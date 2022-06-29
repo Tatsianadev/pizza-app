@@ -17,8 +17,9 @@ namespace PizzaApp.App_Start
     {
         public void Configuration(IAppBuilder app)
         {
-            app.CreatePerOwinContext<AppIdentityDbContext>(AppIdentityDbContext.Create);
+            app.CreatePerOwinContext<ApplicationDbContext>(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

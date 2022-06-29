@@ -94,6 +94,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -192,9 +193,16 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202206291319026_Identity.cs" />
+    <Compile Include="Migrations\202206291319026_Identity.Designer.cs">
+      <DependentUpon>202206291319026_Identity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketViewModel.cs" />
     <Compile Include="Models\CreatePizzaViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
+    <Compile Include="Models\Identity\ApplicationRole.cs" />
+    <Compile Include="Models\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\ApplicationUserManager.cs" />
     <Compile Include="Models\Identity\EditModel.cs" />
@@ -207,7 +215,6 @@
     <Compile Include="Models\SizesPrizesViewModel.cs" />
     <Compile Include="Models\SizeViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\Identity\AppIdentityDbContext.cs" />
     <Compile Include="Repository\ApplicationDbContext.cs" />
     <Compile Include="Repository\Entities\CustomerDataEntity.cs" />
     <Compile Include="Repository\Entities\IngredientEntity.cs" />
@@ -323,6 +330,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202206291319026_Identity.resx">
+      <DependentUpon>202206291319026_Identity.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
