@@ -1,0 +1,19 @@
+﻿@model PizzaApp.Models.Identity.CreateRoleModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add role</h2>
+
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+<div>
+    @Html.ValidationSummary(true,"")
+   
+        <p>Role Name: @Html.EditorFor(m => m.Name)</p>
+        <p>Discription: @Html.EditorFor(m => m.Description)</p>
+        <p><input type="submit" value="Add Role" /></p>
+</div>
+}

@@ -190,6 +190,7 @@
     <Compile Include="Controllers\CreatePizzaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,7 +206,9 @@
     <Compile Include="Models\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Models\Identity\ApplicationUser.cs" />
     <Compile Include="Models\Identity\ApplicationUserManager.cs" />
+    <Compile Include="Models\Identity\CreateRoleModel.cs" />
     <Compile Include="Models\Identity\EditModel.cs" />
+    <Compile Include="Models\Identity\EditRoleModel.cs" />
     <Compile Include="Models\Identity\LoginModel.cs" />
     <Compile Include="Models\Identity\RegisterModel.cs" />
     <Compile Include="Models\IngredientViewModel.cs" />
@@ -310,6 +313,9 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Delete.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

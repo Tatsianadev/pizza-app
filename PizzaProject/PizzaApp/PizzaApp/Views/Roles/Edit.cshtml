@@ -1,0 +1,19 @@
+﻿@model PizzaApp.Models.Identity.EditRoleModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Role</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div>
+    @Html.ValidationSummary(true,"")
+    @Html.HiddenFor(m=>m.Id)
+    <p>Role Name: @Html.EditorFor(m=>m.Name)</p>
+    <p>Description: @Html.EditorFor(m=>m.Description)</p>
+    <p><input type="submit" value="Save Edits"/></p>
+</div>
+}
