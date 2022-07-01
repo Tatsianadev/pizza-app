@@ -42,7 +42,7 @@ namespace PizzaApp.Controllers
                 if (result.Succeeded)
                 {
                     //return RedirectToAction("Login", "Account");
-                    return RedirectToAction("Register", "Account");
+                    return RedirectToAction("Menu", "Menu");
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace PizzaApp.Controllers
         public ActionResult Logout()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Delete()
@@ -166,6 +166,11 @@ namespace PizzaApp.Controllers
                 ModelState.AddModelError("", "User didn't find");
             }
             return View(model);
+        }
+
+        public ActionResult Private()
+        {
+            return View();
         }
     }
 }

@@ -35,7 +35,7 @@
     </nav>*@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid" >
+    <div class="container-fluid">
         <a class="navbar-brand" href="#">Big-Bang-Pizza</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -57,10 +57,29 @@
 
             </ul>
         </div>
-        <form class="container" style="width: fit-content; align-self: end">
-            <a class="btn btn-secondary" href="@Url.Action("Register", "Account")">Sign up</a>
-            <a class="btn btn-secondary" href="@Url.Action("Login", "Account")">Sign in</a>
-        </form>
+        @if (Request.IsAuthenticated)
+        {
+
+            @*<div class="nav-link active text-white">
+                Hi, @Html.ActionLink(User.Identity.Name,"Index", "Home", routeValues:null, htmlAttributes:new{ @class="username", title="Manage"})!
+            </div>*@
+            <div class="text-white">
+                
+                <form class="container" style="width: fit-content; align-self: end">
+                    Hi,@Html.Label(User.Identity.Name)!
+                    <a class="btn btn-secondary" href="@Url.Action("Private", "Account")">Private</a>
+                    <a class="btn btn-secondary" href="@Url.Action("Logout", "Account")">Log out</a>
+                </form>
+            </div>
+        }
+        else
+        {
+            <form class="container" style="width: fit-content; align-self: end">
+                <a class="btn btn-secondary" href="@Url.Action("Register", "Account")">Sign up</a>
+                <a class="btn btn-secondary" href="@Url.Action("Login", "Account")">Sign in</a>
+            </form>
+        }
+
     </div>
 </nav>
 <div class="container body-content">

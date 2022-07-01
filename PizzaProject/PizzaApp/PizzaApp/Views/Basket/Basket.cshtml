@@ -43,8 +43,9 @@
                 <th>@order.Size</th>
                 <th>@order.PizzaPrice $</th>
                 <th>
-                    <form>
-                        <button type="submit" class="btn btn-dark" onclick="deleteOrder(@order.Id)">X</button>
+                    <form method="post">
+                        <input type="hidden" value="@order.Id" name="Id" />
+                        <button  type="submit"  class="btn btn-dark" @*onclick="deleteOrder(@order.Id)"*@ >X</button>
                     </form>
                 </th>
             </tr>

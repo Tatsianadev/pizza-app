@@ -18,12 +18,15 @@ function addOrderToDB(pizzaId) {
         });
 }
 
-function deleteOrder(orderId) {
-    $.get(`https://localhost:44326/GetPrice/deleteorder?orderId=${orderId}`,
-        function (data) {
-            alert(data);
-        });
-}
+
+//Function is valiable. Use to change data without refresh page
+
+//function deleteOrder(orderId) {
+//    $.get(`https://localhost:44326/GetPrice/deleteorder?orderId=${orderId}`,
+//        function (data) {
+//            alert(data);
+//        });
+//}
 
 
 

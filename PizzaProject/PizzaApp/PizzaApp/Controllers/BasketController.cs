@@ -41,6 +41,30 @@ namespace PizzaApp.Controllers
             return View(basketModel);
         }
 
+        [HttpPost]
+        [ActionName("Basket")]
+        public ActionResult DeleteOrder(int id)
+        {
+            var order = _repository.GetOrder(id);
+            if (order!=null)
+            {
+                bool result = _repository.DeleteOrder(order);
+                if (result==true)
+                {
+                    return RedirectToAction("Basket","Basket");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Something goes wrong");
+                }
+            }
+            ModelState.AddModelError("", "Order couldn't be find");
+            return View("Basket");
+            
+            
+            
+        }
+
         public ActionResult ThankYou()
         {
             return View();

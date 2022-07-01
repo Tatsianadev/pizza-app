@@ -46,14 +46,17 @@ namespace PizzaApp.APIControllers
             return "pizza in basket";
         }
 
-        [HttpGet]
-        [Route("delete")]
-        public bool DeleteOrder(int orderId)
-        {
-            var order = _repository.GetOrder(orderId);
-            _repository.DeleteOrder(order);
-            return true;
-        }
+
+        //  method is valiable. Use to change without refresh page
+
+        //[HttpGet]
+        //[Route("delete")]
+        //public bool DeleteOrder(int orderId)
+        //{
+        //    var order = _repository.GetOrder(orderId);
+        //    _repository.DeleteOrder(order);
+        //    return true;
+        //}
 
         [HttpGet]
         public int CountPrice(List<int> arrId, string size)
