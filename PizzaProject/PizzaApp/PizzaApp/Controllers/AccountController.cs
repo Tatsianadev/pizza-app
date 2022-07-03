@@ -35,8 +35,10 @@ namespace PizzaApp.Controllers
                 ApplicationUser user=new ApplicationUser
                 {
                     UserName = model.Name,
+                    Address=model.Address,
+                    PhoneNumber=model.Phone,
                     Email = model.Email
-                    
+                   
                 };
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
@@ -120,6 +122,7 @@ namespace PizzaApp.Controllers
         public async Task<ActionResult> DeleteComfirmed()
         {
             ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+           
             if (user!=null)
             {
                 IdentityResult result = await UserManager.DeleteAsync(user);
@@ -136,7 +139,12 @@ namespace PizzaApp.Controllers
             ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
             if (user!=null)
             {
-                EditModel model = new EditModel() { Email = user.Email };
+                EditModel model = new EditModel() {
+                    Name=user.UserName, 
+                    Email = user.Email, 
+                    Address=user.Address,
+                    Phone=user.PhoneNumber 
+                };
                 return View(model);
             }
             return RedirectToAction("Login", "Account");
@@ -146,14 +154,18 @@ namespace PizzaApp.Controllers
         [ActionName("Edit")]
         public async Task<ActionResult> Edit(EditModel model)
         {
-            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            //ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            ApplicationUser user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
             if (user!=null)
             {
                 user.Email = model.Email;
+                user.UserName = model.Name;
+                user.Address = model.Address;
+                user.PhoneNumber = model.Phone;
                 IdentityResult result = await UserManager.UpdateAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Private", "Account");
                 }
                 else
                 {
@@ -168,9 +180,10 @@ namespace PizzaApp.Controllers
             return View(model);
         }
 
-        public ActionResult Private()
+        public async Task<ActionResult> Private()
         {
-            return View();
+            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            return View(user);
         }
     }
 }

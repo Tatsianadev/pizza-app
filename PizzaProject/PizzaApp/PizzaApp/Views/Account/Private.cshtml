@@ -1,8 +1,52 @@
-﻿
+﻿@model PizzaApp.Models.Identity.ApplicationUser
 @{
     ViewBag.Title = "Private";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Private</h2>
+<h2>Account</h2>
+<div class="container" >
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <div style="font-size:larger">Your Profile</div>
+            <hr />
+            <div>
+                <div>User name</div>
+                <div class="border text_1 div-data">@Model.UserName</div>
+                <br />
+            </div>
+            <div>
+                <div>Email</div>
+                <div class="border text_1 div-data">@Model.Email</div>
+                <br />
+            </div>
+            <div>
+                <div>Address</div>
+                <div class="border text_1 div-data">@Model.Address</div>
+                <br />
+            </div>
+            <div>
+                <div>Phone Number</div>
+                <div class="border text_1 div-data">@Model.PhoneNumber</div>
+                <br />
+            </div>
+
+            <div style="position: relative">
+                <div style="width: fit-content; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+                    <a href="@Url.Action("Edit","Account")" class="btn btn-dark mt-2">Edit</a>
+                    <a href="@Url.Action("Delete","Account")" class="btn btn-dark mt-2">Delete</a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+   
+    
+   
+
+</div>
 

@@ -6,18 +6,58 @@
 
 <h2>Edit profile</h2>
 
-@using (Html.BeginForm())
-{ 
-    @Html.AntiForgeryToken()
-<div>
-    @Html.ValidationSummary(true,"")
-    <div>
-        <p>New Email:@Html.EditorFor(m=>m.Email)</p>
-    </div>
-    <div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-4">
+            <div style="font-size:larger">Edit Profile</div>
+            <hr />
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
         <div>
-            <input type="submit"  value="Save changes" />
+            @Html.ValidationSummary(true, "")
+            <div>
+                <div>New User name</div>
+                <div class="border text_1 div-data">@Html.EditorFor(m=>m.Name)</div>
+                <br />
+            </div>
+            <div>
+                <div>Email</div>
+                <div class="border text_1 div-data">@Html.EditorFor(m => m.Email)</div>
+                <br />
+            </div>
+            <div>
+                <div>Address</div>
+                <div class="border text_1 div-data">@Html.EditorFor(m => m.Address)</div>
+                <br />
+            </div>
+            <div>
+                <div>Phone Number</div>
+                <div class="border text_1 div-data">@Html.EditorFor(m => m.Phone)</div>
+                <br />
+            </div>
+
+            <div style="position: relative">
+                <div style="width: fit-content; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+                        <input type="submit"  value="Edit" class="btn btn-dark mt-2" />
+                        @*<a href="@Url.Action("Edit","Account")" class="btn btn-dark mt-2">Edit</a>*@
+                        <a href="@Url.Action("Private","Account")" class="btn btn-dark mt-2">Cancel</a>
+                </div>
+            </div>
+        </div>
+               
+            }
+            
+
+
         </div>
     </div>
+
+
+
+
 </div>
-}

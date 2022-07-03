@@ -140,3 +140,12 @@ header, nav, main, footer {
 table{
 
 }
+
+.text_1{
+    font:bold;
+    font-size:large;
+}
+
+.div-data{
+    height:30px;
+}

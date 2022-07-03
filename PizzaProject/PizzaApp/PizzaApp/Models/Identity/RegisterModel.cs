@@ -11,6 +11,10 @@ namespace PizzaApp.Models.Identity
         [Required] 
         public string Name { get; set; }
 
+        public string Address { get; set; }
+
+        public string Phone { get; set; }
+
         [Required]
         public string Email { get; set; }
 

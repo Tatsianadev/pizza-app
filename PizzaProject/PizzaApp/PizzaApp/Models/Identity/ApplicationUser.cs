@@ -9,6 +9,7 @@ namespace PizzaApp.Models.Identity
 {
     public class ApplicationUser : IdentityUser
     {
+        public string Address { get; set; }
         public ApplicationUser()
         {
                 
