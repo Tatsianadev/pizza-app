@@ -3,50 +3,87 @@
     ViewBag.Title = "Private";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<!DOCTYPE html>
+<body>
 
-<h2>Account</h2>
-<div class="container" >
-    <div class="row">
-        <div class="col-md-4">
 
-        </div>
-        <div class="col-md-4">
-            <div style="font-size:larger">Your Profile</div>
-            <hr />
-            <div>
-                <div>User name</div>
-                <div class="border text_1 div-data">@Model.UserName</div>
-                <br />
-            </div>
-            <div>
-                <div>Email</div>
-                <div class="border text_1 div-data">@Model.Email</div>
-                <br />
-            </div>
-            <div>
-                <div>Address</div>
-                <div class="border text_1 div-data">@Model.Address</div>
-                <br />
-            </div>
-            <div>
-                <div>Phone Number</div>
-                <div class="border text_1 div-data">@Model.PhoneNumber</div>
-                <br />
-            </div>
 
-            <div style="position: relative">
-                <div style="width: fit-content; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
-                    <a href="@Url.Action("Edit","Account")" class="btn btn-dark mt-2">Edit</a>
-                    <a href="@Url.Action("Delete","Account")" class="btn btn-dark mt-2">Delete</a>
+    <h2 style="position:center">Account</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <div style="font-size:x-large">Your Profile</div>
+                <hr />
+                <div>
+                    <div>User name</div>
+                    <div class="border text_1 div-data">@Model.UserName</div>
+                    <br />
                 </div>
+                <div>
+                    <div>Email</div>
+                    <div class="border text_1 div-data">@Model.Email</div>
+                    <br />
+                </div>
+                <div>
+                    <div>Address</div>
+                    <div class="border text_1 div-data">@Model.Address</div>
+                    <br />
+                </div>
+                <div>
+                    <div>Phone Number</div>
+                    <div class="border text_1 div-data">@Model.PhoneNumber</div>
+                    <br />
+                </div>
+
+                <div style="position: relative">
+                    <div style="width: fit-content; position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;">
+                       
+                        <form>
+                            <a href="@Url.Action("Edit","Account")" class="btn btn-dark mt-2">Edit</a>
+                            @*<a href="@Url.Action("Delete","Account")" class="btn btn-dark mt-2" >Delete</a>*@
+                            <button type="button" id="myBtn" class="btn btn-dark mt-2">Delete</button>
+                        </form>
+                       
+                    </div>
+                </div>
+
             </div>
-
-
         </div>
+
     </div>
-   
-    
-   
 
-</div>
+    <div id="myModal" class="modal">
 
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+
+    </div>
+
+
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>

@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit profile</h2>
+@*<h2 style="position:center">Edit profile</h2>*@
 
 
 <div class="container">
@@ -22,22 +22,22 @@
             @Html.ValidationSummary(true, "")
             <div>
                 <div>New User name</div>
-                <div class="border text_1 div-data">@Html.EditorFor(m=>m.Name)</div>
+                <div class="text_1 div-data" style="width:contain">@Html.EditorFor(m=>m.Name, new { htmlAttributes = new { @class="form_control"} })</div>
                 <br />
             </div>
             <div>
                 <div>Email</div>
-                <div class="border text_1 div-data">@Html.EditorFor(m => m.Email)</div>
+                <div class="text_1 div-data">@Html.EditorFor(m => m.Email, new { htmlAttributes = new { @class = "form_control" } })</div>
                 <br />
             </div>
             <div>
                 <div>Address</div>
-                <div class="border text_1 div-data">@Html.EditorFor(m => m.Address)</div>
+                <div class="text_1 div-data">@Html.EditorFor(m => m.Address, new { htmlAttributes = new { @class = "form_control" } })</div>
                 <br />
             </div>
             <div>
                 <div>Phone Number</div>
-                <div class="border text_1 div-data">@Html.EditorFor(m => m.Phone)</div>
+                <div class="text_1 div-data">@Html.EditorFor(m => m.Phone, new { htmlAttributes = new { @class = "form_control" } })</div>
                 <br />
             </div>
 
