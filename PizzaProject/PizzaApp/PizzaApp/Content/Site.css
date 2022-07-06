@@ -73,11 +73,13 @@ header, nav, main, footer {
 }
 
 .desk-image {
-    position: relative; 
+    position: relative;
     background: url('images/Pizza_1.jpg');
     height: 650px;
-    width: 1000px;
-    top: 5px;
+    width: 100%;
+    background-size: cover;
+    margin-top: 5px;
+    
 }
 
 .desk-text-top {
