@@ -59,8 +59,30 @@
 
         <!-- Modal content -->
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+            <div class="modal-header">
+                <div style="float:right">
+                    <span class="close">&times;</span>
+                </div>
+               
+                @*<h2>Modal Header</h2>*@
+            </div>
+            <div class="modal-body">
+                @*<div style="font:larger">
+                    Are you sure you want to delete your account?
+                </div>*@
+                <p style="font-size:larger">Are you sure you want to delete your account?</p>
+                <p>We'll miss you!'</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post">
+                    @*<input type="submit" class="btn btn-dark mt-2" href="@Url.Action("Delete", "Account")" value="Delete" />*@
+                    <a href="@Url.Action("Delete","Account")" class="btn btn-dark mt-2">Delete</a>
+                    <button class="btn btn-dark mt-2" id="btnCancel">Cancel</button>
+                </form>
+                   
+               
+               
+            </div>
         </div>
 
     </div>
@@ -70,12 +92,18 @@
         var modal = document.getElementById("myModal");
         var btn = document.getElementById("myBtn");
         var span = document.getElementsByClassName("close")[0];
+        var btnOK = document.getElementById("btnOK");
+        var btnCancel = document.getElementById("btnCancel");
 
         btn.onclick = function () {
             modal.style.display = "block";
         }
 
         span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        btnCancel.onclick = function () {
             modal.style.display = "none";
         }
 

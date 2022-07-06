@@ -43,8 +43,8 @@ namespace PizzaApp.Controllers
                 IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //return RedirectToAction("Login", "Account");
-                    return RedirectToAction("Menu", "Menu");
+                    return RedirectToAction("Login", "Account");
+                    //return RedirectToAction("Menu", "Menu");
                 }
                 else
                 {
@@ -112,12 +112,12 @@ namespace PizzaApp.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Delete()
-        {
-            return View();
-        }
+        //public ActionResult Delete()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
+        //[HttpPost]
         [ActionName("Delete")]
         public async Task<ActionResult> DeleteComfirmed()
         {
@@ -128,7 +128,7 @@ namespace PizzaApp.Controllers
                 IdentityResult result = await UserManager.DeleteAsync(user);
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction("Logout", "Account");
                 }
             }
             return RedirectToAction("Index", "Home");

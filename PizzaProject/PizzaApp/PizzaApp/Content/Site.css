@@ -175,15 +175,23 @@ table{
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
 }
 
 /* The Close Button */
 .close {
-    color: #aaaaaa;
+    color: black;
     float: right;
+    border: solid 1px;
     font-size: 28px;
     font-weight: bold;
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    position: absolute;
+    right: 5px;
+    bottom:5px;
+    
 }
 
     .close:hover,
@@ -192,3 +200,54 @@ table{
         text-decoration: none;
         cursor: pointer;
     }
+
+/* Modal Header */
+.modal-header {
+    padding: 2px 16px;
+    background-color: gainsboro;
+    color: white;
+    align-items: end;
+    align-content:end;
+    position:relative;
+    height:40px;
+    
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 2px 16px;
+    text-align:center;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 2px 16px;
+    
+    color: white;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}

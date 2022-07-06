@@ -48,8 +48,11 @@
                         Final price:
                     </td>
                     <td  align="left" width="100" style="padding:10px 10px">
-                        <div id="price"> @Model.PizzaPrice</div>
-                        <div>$</div>
+                        <div>
+                            <div id="price" style="display:inline-block"> @Model.PizzaPrice</div>
+                            <div style="display:inline-block">$</div>
+                        </div>
+                       
                     </td>
                 </tr>
                 @*<tr>
