@@ -39,10 +39,25 @@
                         <div style="float: left">$</div>
                     </div>
                     <br />
-                    <a class="btn btn-dark mt-2" asp-area="" asp-page=""
-                       onclick="addOrderToDB(@pizza.PizzaID)">Get it!</a>
-                    <div id="check_@pizza.PizzaID"></div>
-                    <br />
+                    @if (Request.IsAuthenticated)
+                    {
+                        @*var userName = User.Identity.Name;
+                        <div>@userName</div>*@
+                        <a class="btn btn-dark mt-2" asp-area="" asp-page=""
+                           onclick="addOrderToDB(@pizza.PizzaID, '@User.Identity.Name.ToString()')">Get it!</a>
+                           @*onclick="addOrderToDB(@pizza.PizzaID)">Get it!</a>*@
+                        <div id="check_@pizza.PizzaID"></div>
+                        <br />
+
+                    }
+                    else
+                    {
+                        <a class="btn btn-dark mt-2" asp-area="" asp-page="">Get it!</a>
+                        <div id="check_@pizza.PizzaID"></div>
+                        <br />
+
+                    }
+
                 </div>
             }
         </div>

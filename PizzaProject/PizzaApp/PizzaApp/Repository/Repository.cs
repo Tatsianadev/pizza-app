@@ -131,13 +131,21 @@ namespace PizzaApp.Repository
         //Order
         public OrderEntity AddOrder(OrderEntity order)
         {
-            if (order == null)
+            try
             {
-                throw new NotImplementedException();
-            }
+                if (order == null)
+                {
+                    throw new NotImplementedException();
+                }
 
-            _context.Order.Add(order);
-            _context.SaveChanges();
+                _context.Orders.Add(order);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
             return order;
         }
 
@@ -148,20 +156,20 @@ namespace PizzaApp.Repository
                 throw new NotImplementedException();
             }
 
-            _context.Order.Remove(order);
+            _context.Orders.Remove(order);
             _context.SaveChanges();
             return true;
         }
 
         public IEnumerable<OrderEntity> GetAllOrders()
         {
-            var orders = _context.Order.ToList();
+            var orders = _context.Orders.ToList();
             return orders;
         }
 
         public OrderEntity GetOrder(int orderId)
         {
-            var order = _context.Order.FirstOrDefault(x => x.Id == orderId);
+            var order = _context.Orders.FirstOrDefault(x => x.Id == orderId);
             return order;
         }
 
@@ -172,14 +180,14 @@ namespace PizzaApp.Repository
                 throw new NotImplementedException();
             }
 
-            var ud = _context.Order.Find(oldOrder);
+            var ud = _context.Orders.Find(oldOrder);
             if (ud == null)
             {
                 throw new NotImplementedException();
             }
 
-            _context.Order.Remove(oldOrder);
-            _context.Order.Add(newOrder);
+            _context.Orders.Remove(oldOrder);
+            _context.Orders.Add(newOrder);
             _context.SaveChanges();
             return true;
         }
