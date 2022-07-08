@@ -79,7 +79,7 @@ namespace PizzaApp.Controllers
             if (ModelState.IsValid)
             {
                 ApplicationUser user = await UserManager.FindAsync(model.UserName, model.Password);
-                if (user == null)
+                if (user==null)
                 {
                     ModelState.AddModelError("", "Invalid password");
                 }
@@ -97,8 +97,6 @@ namespace PizzaApp.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
-
-                    //string id = user.Id;
 
                     return Redirect(returnUrl);
                 }

@@ -17,7 +17,5 @@ namespace PizzaApp.Models
         public string Size { get; set; }
         public List<IngredientViewModel> Ingredients { get; set; }
         public Nullable<int> PizzaPrice { get; set; }
-
-        public string UserId { get; set; }
     }
 }

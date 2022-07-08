@@ -22,7 +22,6 @@ namespace PizzaApp.Controllers
         {
             var data = Repository.GetAllPizzas();
             int sizeIdDefault = 1;
-
             
             var pizzaModels = data.Select(entity => new PizzaViewModel()
             {

@@ -1,5 +1,4 @@
-﻿using PizzaApp.Models.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,7 +7,7 @@ using System.Web;
 
 namespace PizzaApp.Repository.Entities
 {
-    [Table("Orders")]
+    [Table("Order")]
     public class OrderEntity
     {
         [Key]
@@ -18,10 +17,5 @@ namespace PizzaApp.Repository.Entities
         public string PizzaName { get; set; }
         public string  Size { get; set; }
         public Nullable<int> PizzaPrice { get; set; }
-
-        public string ApplicationUser_Id { get; set; }
-
-        public virtual ApplicationUser ApplicationUser { get; set; }
-
     }
 }

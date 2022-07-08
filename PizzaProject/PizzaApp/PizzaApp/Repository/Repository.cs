@@ -131,21 +131,13 @@ namespace PizzaApp.Repository
         //Order
         public OrderEntity AddOrder(OrderEntity order)
         {
-            try
+            if (order == null)
             {
-                if (order == null)
-                {
-                    throw new NotImplementedException();
-                }
-
-                _context.Orders.Add(order);
-                _context.SaveChanges();
+                throw new NotImplementedException();
             }
-            catch (Exception e)
-            {
 
-                throw;
-            }
+            _context.Order.Add(order);
+            _context.SaveChanges();
             return order;
         }
 
@@ -156,20 +148,20 @@ namespace PizzaApp.Repository
                 throw new NotImplementedException();
             }
 
-            _context.Orders.Remove(order);
+            _context.Order.Remove(order);
             _context.SaveChanges();
             return true;
         }
 
         public IEnumerable<OrderEntity> GetAllOrders()
         {
-            var orders = _context.Orders.ToList();
+            var orders = _context.Order.ToList();
             return orders;
         }
 
         public OrderEntity GetOrder(int orderId)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == orderId);
+            var order = _context.Order.FirstOrDefault(x => x.Id == orderId);
             return order;
         }
 
@@ -180,14 +172,14 @@ namespace PizzaApp.Repository
                 throw new NotImplementedException();
             }
 
-            var ud = _context.Orders.Find(oldOrder);
+            var ud = _context.Order.Find(oldOrder);
             if (ud == null)
             {
                 throw new NotImplementedException();
             }
 
-            _context.Orders.Remove(oldOrder);
-            _context.Orders.Add(newOrder);
+            _context.Order.Remove(oldOrder);
+            _context.Order.Add(newOrder);
             _context.SaveChanges();
             return true;
         }

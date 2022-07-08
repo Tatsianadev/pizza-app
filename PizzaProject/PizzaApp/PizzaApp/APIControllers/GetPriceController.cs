@@ -7,9 +7,6 @@ using System.Web;
 using System.Web.Mvc;
 using PizzaApp.Models;
 using System.Configuration;
-using PizzaApp.Models.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using System.Threading.Tasks;
 
 namespace PizzaApp.APIControllers
 {
@@ -23,14 +20,6 @@ namespace PizzaApp.APIControllers
             _repository = repository;
         }
 
-        private ApplicationUserManager UserManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-        }
-
         // GET: GetPrice
         [HttpGet]
         [Route("getprice")]
@@ -40,30 +29,10 @@ namespace PizzaApp.APIControllers
             return price.ToString();
         }
 
-        //[HttpGet]
-        //[Route("addorder")]
-        //public string AddOrderToDb(int pizzaId, int price, string size)
-        //{
-        //    var pizza = _repository.GetPizza(pizzaId);
-        //    var order = new OrderEntity()
-        //    {
-        //        PizzaId = pizza.PizzaID,
-        //        PizzaName = pizza.PizzaName,
-        //        PizzaImage = pizza.ImageFile,
-        //        PizzaPrice = price,
-        //        Size = size
-        //    };
-
-        //    _repository.AddOrder(order);
-        //    return "pizza in basket";
-        //}
-
         [HttpGet]
         [Route("addorder")]
-        public async Task<string> AddOrderToDb(int pizzaId, int price, string size, string userName)
+        public string AddOrderToDb(int pizzaId, int price, string size)
         {
-           ApplicationUser user = await UserManager.FindByNameAsync(userName);
-            var id = user.Id;
             var pizza = _repository.GetPizza(pizzaId);
             var order = new OrderEntity()
             {
@@ -71,10 +40,8 @@ namespace PizzaApp.APIControllers
                 PizzaName = pizza.PizzaName,
                 PizzaImage = pizza.ImageFile,
                 PizzaPrice = price,
-                Size = size,
-                ApplicationUser_Id = id
+                Size = size
             };
-
             _repository.AddOrder(order);
             return "pizza in basket";
         }
