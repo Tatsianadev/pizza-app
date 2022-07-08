@@ -194,15 +194,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202206291319026_Identity.cs" />
-    <Compile Include="Migrations\202206291319026_Identity.Designer.cs">
-      <DependentUpon>202206291319026_Identity.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202207020646182_SecondMigration.cs" />
-    <Compile Include="Migrations\202207020646182_SecondMigration.Designer.cs">
-      <DependentUpon>202207020646182_SecondMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BasketViewModel.cs" />
     <Compile Include="Models\CreatePizzaViewModel.cs" />
     <Compile Include="Models\CustomerViewModel.cs" />
@@ -341,14 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202206291319026_Identity.resx">
-      <DependentUpon>202206291319026_Identity.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202207020646182_SecondMigration.resx">
-      <DependentUpon>202207020646182_SecondMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

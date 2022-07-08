@@ -131,13 +131,21 @@ namespace PizzaApp.Repository
         //Order
         public OrderEntity AddOrder(OrderEntity order)
         {
-            if (order == null)
+            try
             {
-                throw new NotImplementedException();
-            }
+                if (order == null)
+                {
+                    throw new NotImplementedException();
+                }
 
-            _context.Order.Add(order);
-            _context.SaveChanges();
+                _context.Order.Add(order);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
             return order;
         }
 
