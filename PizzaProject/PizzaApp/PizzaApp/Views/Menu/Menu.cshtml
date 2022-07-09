@@ -19,31 +19,42 @@
             @foreach (var pizza in Model)
             {
                 var itemImage = "/Content/images/" + (pizza.ImageFile);
-                <div class="col-md-4">
-                    <div>
-                        <img src="@itemImage" alt="Alternate Text" asp-append-version="true" class="menuImage" />
-                    </div>
-                    <p3 type="text" class="text-capitalize" id="@pizza.PizzaID">@pizza.PizzaName</p3>
-                    <br />
-                    <label>Choose size</label>
-                    <select id="size_@pizza.PizzaID" onchange="getPrice(@pizza.PizzaID)">
-                        <option value="1">small</option>
-                        <option value="2">medium</option>
-                        <option value="3">big</option>
-                    </select>
-                    <br />
-                    <div class="inline" style="width: 10%">
-                        <div class="" style="float: left" id="price_@pizza.PizzaID">
-                            @pizza.PizzaPriceDefault
-                        </div>
-                        <div style="float: left">$</div>
-                    </div>
-                    <br />
-                    <a class="btn btn-dark mt-2" asp-area="" asp-page=""
-                       onclick="addOrderToDB(@pizza.PizzaID)">Get it!</a>
-                    <div id="check_@pizza.PizzaID"></div>
-                    <br />
+            <div class="col-md-4">
+                <div>
+                    <img src="@itemImage" alt="Alternate Text" asp-append-version="true" class="menuImage" />
                 </div>
+                <p3 type="text" class="text-capitalize" id="@pizza.PizzaID">@pizza.PizzaName</p3>
+                <br />
+                <label>Choose size</label>
+                <select id="size_@pizza.PizzaID" onchange="getPrice(@pizza.PizzaID)">
+                    <option value="1">small</option>
+                    <option value="2">medium</option>
+                    <option value="3">big</option>
+                </select>
+                <br />
+                <div class="inline" style="width: 10%">
+                    <div class="" style="float: left" id="price_@pizza.PizzaID">
+                        @pizza.PizzaPriceDefault
+                    </div>
+                    <div style="float: left">$</div>
+                </div>
+                <br />
+                @if (User.Identity.IsAuthenticated)
+                {
+
+                    <a class="btn btn-dark mt-2" asp-area="" asp-page=""
+                       onclick="addOrderToDB(@pizza.PizzaID, '@User.Identity.Name')">Get it!</a>
+                    <div id="check_@pizza.PizzaID"></div>
+                }
+                else
+                {
+                    <a class="btn btn-dark mt-2" asp-area="" asp-page=""
+                      >Get it!</a>
+                    <div id="check_@pizza.PizzaID"></div>
+                }
+
+                <br />
+            </div>
             }
         </div>
     </div>
