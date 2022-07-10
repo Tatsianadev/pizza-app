@@ -8,16 +8,31 @@ using System.Web;
 
 namespace PizzaApp.Repository.Entities
 {
+    //[Table("Orders")]
+    //public class OrderEntity
+    //{
+    //    [Key]
+    //    public int Id { get; set; }
+    //    public int PizzaId { get; set; }
+    //    public string PizzaImage { get; set; }
+    //    public string PizzaName { get; set; }
+    //    public string  Size { get; set; }
+    //    public Nullable<int> PizzaPrice { get; set; }
+
+    //    public string ApplicationUserId { get; set; }
+    //    public ApplicationUser ApplicationUser { get; set; }
+    //}
+
     [Table("Orders")]
     public class OrderEntity
     {
         [Key]
         public int Id { get; set; }
         public int PizzaId { get; set; }
-        public string PizzaImage { get; set; }
-        public string PizzaName { get; set; }
-        public string  Size { get; set; }
-        public Nullable<int> PizzaPrice { get; set; }
+       
+        public int SizeId { get; set; }
+        
+        //public int CustomerPizzaId { get; set; }
 
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

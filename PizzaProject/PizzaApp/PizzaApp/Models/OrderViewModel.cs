@@ -13,9 +13,11 @@ namespace PizzaApp.Models
         public int PizzaId { get; set; }
         public string PizzaImage { get; set; }
         public string PizzaName { get; set; }
-       
+
         public string Size { get; set; }
         public List<IngredientViewModel> Ingredients { get; set; }
         public Nullable<int> PizzaPrice { get; set; }
     }
+
+
 }

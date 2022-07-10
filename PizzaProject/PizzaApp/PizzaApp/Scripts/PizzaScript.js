@@ -18,12 +18,25 @@
 //        });
 //}
 
-function addOrderToDB(pizzaId, userName) {
-    var price = document.getElementById(`price_${pizzaId}`).textContent;
-    var sizeEl = document.getElementById(`size_${pizzaId}`);
-    var size = sizeEl.options[sizeEl.selectedIndex].text;
+//function addOrderToDB(pizzaId, userName) {
+//    var price = document.getElementById(`price_${pizzaId}`).textContent;
+//    var sizeEl = document.getElementById(`size_${pizzaId}`);
+//    var size = sizeEl.options[sizeEl.selectedIndex].text;
 
-    $.get(`https://localhost:44326/GetPrice/addordertodb?pizzaId=${pizzaId}&price=${price}&size=${size}&userName=${userName}`,
+//    $.get(`https://localhost:44326/GetPrice/addordertodb?pizzaId=${pizzaId}&price=${price}&size=${size}&userName=${userName}`,
+//        function (data) {
+//            document.getElementById(`check_${pizzaId}`).innerText = data;
+//        });
+//}
+
+
+function addOrderToDB(pizzaId, userName) {
+    //var price = document.getElementById(`price_${pizzaId}`).textContent;
+    var sizeEl = document.getElementById(`size_${pizzaId}`);
+    //var size = sizeEl.options[sizeEl.selectedIndex].text;
+    var size = sizeEl.options[sizeEl.selectedIndex].value;
+
+    $.get(`https://localhost:44326/GetPrice/addordertodb?pizzaId=${pizzaId}&size=${size}&userName=${userName}`,
         function (data) {
             document.getElementById(`check_${pizzaId}`).innerText = data;
         });
