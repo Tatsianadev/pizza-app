@@ -156,8 +156,17 @@ namespace PizzaApp.Repository
                 throw new NotImplementedException();
             }
 
-            _context.Order.Remove(order);
-            _context.SaveChanges();
+            try
+            {
+                _context.Order.Remove(order);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+            
             return true;
         }
 

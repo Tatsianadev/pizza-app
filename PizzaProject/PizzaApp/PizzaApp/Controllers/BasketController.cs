@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using PizzaApp.Models;
 using PizzaApp.Repository;
+using PizzaApp.Repository.Entities;
 
 namespace PizzaApp.Controllers
 {
@@ -47,28 +48,38 @@ namespace PizzaApp.Controllers
             var sizes = _repository.GetAllSizes();
             var prices = _repository.GetAllPrices();
             var orders = _repository.GetAllOrders();
+            
+            var orderModel = from order in orders
+                             join pizza in pizzas on order.PizzaId equals pizza.PizzaID into table1
+                             from pizza in table1.DefaultIfEmpty().ToList()
+                             join size in sizes on order.SizeId equals size.SizeID into table2
+                             from size in table2.DefaultIfEmpty()
+                             join price in prices on
+                             new { x1 = order.PizzaId, x2 = order.SizeId } equals
+                             new { x1 = price.PizzaID, x2 = price.SizeID } into table3
+                             from price in table3.DefaultIfEmpty()
+                             select new OrderViewModel()
+                             {
+                                 Id=order.Id,
+                                 PizzaName = pizza.PizzaName,
+                                 PizzaImage = pizza.ImageFile,
+                                 Size = size.Size,
+                                 PizzaPrice = price.Price
+                             };
 
-            //var orderModel = from order in orders
-            //                 join pizza in pizzas on order.PizzaId equals pizza.PizzaID into table1
-            //                 from pizza in table1.DefaultIfEmpty()
-            //                 join size in sizes on order.SizeId equals size.SizeID into table2
-            //                 from size in table2.DefaultIfEmpty()
-            //                 join price in prices on
-            //                 new { x1 = order.PizzaId, x2 = order.SizeId } equals
-            //                 new { x1 = price.PizzaID, x2 = price.SizeID } into table3
-            //                 from price in table3.DefaultIfEmpty()
-            var orderModel = orders.Select(entity => new OrderViewModel()
-            {
-                Id = entity.Id,
-                PizzaId = entity.PizzaId,
-                PizzaImage = _repository.GetPizza(entity.Id).ImageFile,
-                PizzaName = _repository.GetPizza(entity.Id).PizzaName,
-                PizzaPrice = _repository.GetPrice(entity.PizzaId, entity.SizeId).Price,
-                Size = _repository.GetSize(entity.SizeId).Size
-            });
 
-            int finalPrice = 0;
-            finalPrice = (int)orderModel.Select(x => x.PizzaPrice).Sum();
+            //var orderModel = orders.Select(entity => new OrderViewModel()
+            //{
+            //    Id = entity.Id,
+            //    PizzaId = entity.PizzaId,
+            //    PizzaImage = _repository.GetPizza(entity.Id).ImageFile,
+            //    PizzaName = _repository.GetPizza(entity.Id).PizzaName,
+            //    PizzaPrice = _repository.GetPrice(entity.PizzaId, entity.SizeId).Price,
+            //    Size = _repository.GetSize(entity.SizeId).Size
+            //});
+
+            var finalPrice = 0;
+            finalPrice = orderModel.Select(x => x.PizzaPrice).Sum();
 
             BasketViewModel basketModel = new BasketViewModel()
             {
@@ -99,9 +110,7 @@ namespace PizzaApp.Controllers
             }
             ModelState.AddModelError("", "Order couldn't be find");
             return View("Basket");
-            
-            
-            
+           
         }
 
         public ActionResult ThankYou()

@@ -31,9 +31,7 @@
 
 
 function addOrderToDB(pizzaId, userName) {
-    //var price = document.getElementById(`price_${pizzaId}`).textContent;
     var sizeEl = document.getElementById(`size_${pizzaId}`);
-    //var size = sizeEl.options[sizeEl.selectedIndex].text;
     var size = sizeEl.options[sizeEl.selectedIndex].value;
 
     $.get(`https://localhost:44326/GetPrice/addordertodb?pizzaId=${pizzaId}&size=${size}&userName=${userName}`,
