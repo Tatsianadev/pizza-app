@@ -41,7 +41,7 @@ namespace PizzaApp.APIControllers
         }
 
 
-        //Before Iser-Order reference
+        //Before User-Order reference
 
         //[HttpGet]
         //[Route("addorder")]
@@ -62,7 +62,7 @@ namespace PizzaApp.APIControllers
 
 
 
-        //Before Iser-Order reference
+        //Before User-Order reference
 
         //[HttpGet]
         //[Route("addorder")]
@@ -95,7 +95,7 @@ namespace PizzaApp.APIControllers
             var id = user.Id;
 
             var pizza = _repository.GetPizza(pizzaId);
-            
+
             var order = new OrderEntity()
             {
                 PizzaId = pizza.PizzaID,
@@ -123,7 +123,7 @@ namespace PizzaApp.APIControllers
         {
             var price = _repository.GetPriceBySize(size).Price;
 
-            if (arrId!=null)
+            if (arrId != null)
             {
                 foreach (var item in arrId)
                 {
@@ -131,30 +131,29 @@ namespace PizzaApp.APIControllers
                     price += ingredient.Price;
                 }
             }
-         
+
             return price;
         }
 
 
         //Переделать для Created Pizza после изменения таблицы orders (код был рабочим до изменения orders) 
 
-        //    [HttpPost]
+        [HttpPost]
 
-        //    public string AddCreatedPizzaToOrder(int Id, int PizzaId, string Name, string Size, int Price)
-        //    {
+        public string AddCreatedPizzaToOrder(int Id, string Name, string Size, int Price)
+        {
 
-        //        var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
-        //        var createdPizza = new OrderEntity()
-        //        {
-        //            Id = Id,
-        //            PizzaId = PizzaId,
-        //            PizzaName = Name,
-        //            PizzaImage = createdPizzaImage,
-        //            Size = Size,
-        //            PizzaPrice = Price
-        //        };
-        //        _repository.AddOrder(createdPizza);
-        //        return "pizza added to order";
-        //    }
+            //var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
+            var PizzaId = ++(_repository.GetAllPizzas().Last().PizzaID) + (_repository.GetAllOrders().Last().Id);
+            var SizeId = _repository.GetSizeId(Size).SizeID;
+            var createdPizza = new OrderEntity()
+            {
+                Id = Id,
+                PizzaId = PizzaId,
+                SizeId = SizeId
+            };
+            _repository.AddOrder(createdPizza);
+            return "pizza added to order";
         }
     }
+}

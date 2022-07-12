@@ -99,18 +99,18 @@ function CountPrice() {
 
 
 
-function AddCreatedPizzaToOrder(id, idPizza) {
+function AddCreatedPizzaToOrder(id) {
     //var id = document.getElementById("id_order").textContent;
     var id = id;
     //var idPizza = document.getElementById("id_pizza").textContent;
-    var idPizza = idPizza;
+    //var idPizza = idPizza;
     //var image = image;
     var name = document.getElementById("name").textContent;
     var size = document.getElementById("size").textContent;
     var price = document.getElementById("price").textContent;
     alert(id);
     $.post(`https://localhost:44326/GetPrice/addcreatedpizzatoorder`,
-        { Id: id, PizzaId: idPizza, Name: name, Size: size, Price: price }).
+        { Id: id, Name: name, Size: size, Price: price }).
         done(function (data) {
             alert(data);
         });

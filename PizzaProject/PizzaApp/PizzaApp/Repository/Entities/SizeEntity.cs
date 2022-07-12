@@ -7,7 +7,7 @@ using System.Web;
 
 namespace PizzaApp.Repository.Entities
 {
-    [Table("PizzaSize")]
+    [Table("Size")]
     public class SizeEntity
     {
         public SizeEntity()

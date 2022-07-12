@@ -11,7 +11,6 @@ namespace PizzaApp.Models
         [Required(ErrorMessage = "Give your pizza name")]
         [StringLength(30, ErrorMessage = "Too long name. Do name shorter")]
         public string Name { get; set; }
-        //public List<SizeViewModel> Size { get; set; }
 
         public List<SizesPrizesViewModel> SizePrice { get; set; }
 
