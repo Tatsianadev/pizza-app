@@ -121,7 +121,9 @@ namespace PizzaApp.APIControllers
         [HttpGet]
         public int CountPrice(List<int> arrId, string size)
         {
-            var price = _repository.GetPriceBySize(size).Price;
+            var pizzaId = _repository.GetAllPizzas().FirstOrDefault(x => x.PizzaName == "CustomerPizza").PizzaID;
+            var sizeId = _repository.GetSizeId(size).SizeID;
+            var price = _repository.GetPrice(pizzaId, sizeId).Price;
 
             if (arrId != null)
             {
@@ -134,6 +136,13 @@ namespace PizzaApp.APIControllers
 
             return price;
         }
+
+
+
+
+
+
+
 
 
         //Переделать для Created Pizza после изменения таблицы orders (код был рабочим до изменения orders) 

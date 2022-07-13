@@ -321,118 +321,63 @@ namespace PizzaApp.Repository
 
 
         //SizePrice
-        public SizesPricesEntity AddPriceSize(SizesPricesEntity sizePrice)
-        {
-            if (sizePrice == null)
-            {
-                throw new NotImplementedException();
-            }
-
-            _context.SizePrice.Add(sizePrice);
-            _context.SaveChanges();
-            return sizePrice;
-        }
-
-        public bool DeletePriceSize(SizesPricesEntity sizePrice)
-        {
-            if (sizePrice == null)
-            {
-                throw new NotImplementedException();
-            }
-
-            _context.SizePrice.Remove(sizePrice);
-            _context.SaveChanges();
-            return true;
-        }
-
-        public IEnumerable<SizesPricesEntity> GetAllSizesPrices()
-        {
-            var sizesPrices = _context.SizePrice.ToList();
-            return sizesPrices;
-        }
-
-        public SizesPricesEntity GetPriceBySize(string size)
-        {
-            var price = _context.SizePrice.FirstOrDefault(x => x.Size == size);
-            return price;
-        }
-
-        
-        public bool UpdatePriceSize(SizesPricesEntity oldSizePrice, SizesPricesEntity newSizePrice)
-        {
-            if (newSizePrice == null)
-            {
-                throw new NotImplementedException();
-            }
-
-            var ud = _context.SizePrice.Find(oldSizePrice);
-            if (ud == null)
-            {
-                throw new NotImplementedException();
-            }
-
-            _context.SizePrice.Remove(oldSizePrice);
-            _context.SizePrice.Add(newSizePrice);
-            _context.SaveChanges();
-            return true;
-        }
-
-        //CustomerData
-        //public CustomerDataEntity AddCustomerData(CustomerDataEntity customerData)
+        //public SizesPricesEntity AddPriceSize(SizesPricesEntity sizePrice)
         //{
-        //    if (customerData == null)
+        //    if (sizePrice == null)
         //    {
         //        throw new NotImplementedException();
         //    }
 
-        //    _context.CustomerData.Add(customerData);
+        //    _context.SizePrice.Add(sizePrice);
         //    _context.SaveChanges();
-        //    return customerData;
+        //    return sizePrice;
         //}
 
-        //public bool DeleteCustomerData(CustomerDataEntity customerData)
+        //public bool DeletePriceSize(SizesPricesEntity sizePrice)
         //{
-        //    if (customerData == null)
+        //    if (sizePrice == null)
         //    {
         //        throw new NotImplementedException();
         //    }
 
-        //    _context.CustomerData.Remove(customerData);
+        //    _context.SizePrice.Remove(sizePrice);
         //    _context.SaveChanges();
         //    return true;
         //}
 
-        //public IEnumerable<CustomerDataEntity> GetAllCustomersData()
+        //public IEnumerable<SizesPricesEntity> GetAllSizesPrices()
         //{
-        //    var customersData = _context.CustomerData.ToList();
-        //    return customersData;
+        //    var sizesPrices = _context.SizePrice.ToList();
+        //    return sizesPrices;
         //}
 
-        //public CustomerDataEntity GetCustomerData(int id)
+        //public SizesPricesEntity GetPriceBySize(string size)
         //{
-        //    var customer = _context.CustomerData.FirstOrDefault(x => x.Id == id);
-        //    return customer;
+        //    var price = _context.SizePrice.FirstOrDefault(x => x.Size == size);
+        //    return price;
         //}
 
-
-        //public bool UpdateCustomerData(CustomerDataEntity oldCustomerData, CustomerDataEntity newCustomerData)
+        
+        //public bool UpdatePriceSize(SizesPricesEntity oldSizePrice, SizesPricesEntity newSizePrice)
         //{
-        //    if (newCustomerData == null)
+        //    if (newSizePrice == null)
         //    {
         //        throw new NotImplementedException();
         //    }
 
-        //    var ud = _context.CustomerData.Find(oldCustomerData);
+        //    var ud = _context.SizePrice.Find(oldSizePrice);
         //    if (ud == null)
         //    {
         //        throw new NotImplementedException();
         //    }
 
-        //    _context.CustomerData.Remove(oldCustomerData);
-        //    _context.CustomerData.Add(newCustomerData);
+        //    _context.SizePrice.Remove(oldSizePrice);
+        //    _context.SizePrice.Add(newSizePrice);
         //    _context.SaveChanges();
         //    return true;
         //}
+
+       
     }
 }
 

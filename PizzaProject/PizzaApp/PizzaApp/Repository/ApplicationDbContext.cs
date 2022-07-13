@@ -18,9 +18,9 @@ namespace PizzaApp.Repository
         public DbSet<PriceEntity> PizzaPrice { get; set; }
         public DbSet<OrderEntity> Order { get; set; }
         public DbSet<IngredientEntity> Ingredients { get; set; }
-        public DbSet<SizesPricesEntity> SizePrice { get; set; }
 
-       // public DbSet<CustomerDataEntity> CustomerData { get; set; }
+        public DbSet<CustomerPizzaEntity> CustomerPizza { get; set; }
+
 
         public ApplicationDbContext() :
             base("PizzaDBEntities")

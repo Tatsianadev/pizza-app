@@ -18,15 +18,52 @@ namespace PizzaApp.Controllers
         }
 
         // GET: CreatePizza
+        //public ActionResult CreatePizza()
+        //{
+        //    var sizesPricesEntity = _repository.GetAllSizesPrices();
+        //    var sizePrice = sizesPricesEntity.Select(entity => new SizesPrizesViewModel()
+        //    {
+        //        Id = entity.Id,
+        //        Size = entity.Size,
+        //        Price=entity.Price
+        //    }).ToList();
+
+        //    var ingredientsEntity = _repository.GetAllIngredients();
+        //    var ingredients = ingredientsEntity.Select(entity => new IngredientViewModel()
+        //    {
+        //        Id = entity.Id,
+        //        Name = entity.Name,
+        //        Price = entity.Price,
+        //        Image = entity.Image,
+                
+        //    }).ToList();
+
+        //    CreatePizzaViewModel createModel = new CreatePizzaViewModel()
+        //    {
+        //        SizePrice = sizePrice,
+        //        Ingredients = ingredients,
+        //        FinalPrice=sizePrice.FirstOrDefault(x=>x.Size=="small").Price
+        //    };
+          
+        //    return View(createModel);
+        //}
+
         public ActionResult CreatePizza()
         {
-            var sizesPricesEntity = _repository.GetAllSizesPrices();
-            var sizePrice = sizesPricesEntity.Select(entity => new SizesPrizesViewModel()
+            var sizesEntity = _repository.GetAllSizes();
+            var sizes = sizesEntity.Select(entity => new SizeViewModel()
             {
-                Id = entity.Id,
-                Size = entity.Size,
-                Price=entity.Price
-            }).ToList();
+                SizeID = entity.SizeID,
+                Size = entity.Size
+            });
+
+            var defaultPrices = _repository.GetAllPrices();
+            var prices = defaultPrices.Select(entity => new PriceViewModel()
+            {
+                PriceID = entity.PriceID,
+                PizzaID = entity.PizzaID,
+                SizeID = entity.SizeID
+            });
 
             var ingredientsEntity = _repository.GetAllIngredients();
             var ingredients = ingredientsEntity.Select(entity => new IngredientViewModel()
@@ -35,27 +72,23 @@ namespace PizzaApp.Controllers
                 Name = entity.Name,
                 Price = entity.Price,
                 Image = entity.Image,
-                
-            }).ToList();
 
-            //var dictionaryIngredients = new Dictionary<IngredientViewModel, bool>();
-            //foreach (var ingredient in ingredients)
-            //{
-            //    dictionaryIngredients.Add(ingredient, false);
-            //}
-            
-            
+            }).ToList();
 
             CreatePizzaViewModel createModel = new CreatePizzaViewModel()
             {
-                SizePrice = sizePrice,
+                Sizes=sizes,
+                DefaultPrices=prices,
                 Ingredients = ingredients,
-                FinalPrice=sizePrice.FirstOrDefault(x=>x.Size=="small").Price
+                FinalPrice = prices.FirstOrDefault(x => x.SizeID == 1).Price
             };
-            
-            
+
             return View(createModel);
         }
+
+
+
+
 
         [HttpPost]
         public ActionResult CreatedPizza(CreatePizzaViewModel createdPizza)

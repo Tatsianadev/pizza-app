@@ -40,16 +40,8 @@ namespace PizzaApp.Repository
         bool DeleteSize(SizeEntity size);
         bool UpdateSize(SizeEntity oldSize, SizeEntity newSize);
 
-        IEnumerable<SizesPricesEntity> GetAllSizesPrices();
-        SizesPricesEntity GetPriceBySize(string size);
-        SizesPricesEntity AddPriceSize(SizesPricesEntity sizePrice);
-        bool DeletePriceSize(SizesPricesEntity sizePrice);
-        bool UpdatePriceSize(SizesPricesEntity oldSizePrice, SizesPricesEntity newSizePrice);
+       
 
-        //IEnumerable<CustomerDataEntity> GetAllCustomersData();
-        //CustomerDataEntity GetCustomerData(int id);
-        //CustomerDataEntity AddCustomerData(CustomerDataEntity customerData);
-        //bool DeleteCustomerData(CustomerDataEntity customerData);
-        //bool UpdateCustomerData(CustomerDataEntity oldCustomerData, CustomerDataEntity newCustomerData);
+        
     }
 }

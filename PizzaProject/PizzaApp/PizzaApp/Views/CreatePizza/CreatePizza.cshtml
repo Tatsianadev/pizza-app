@@ -28,7 +28,7 @@
                         Choose size
                     </td>
                     <td align="left" width="100" style="padding: 0 10px">
-                        @foreach (var size in Model.SizePrice)
+                        @foreach (var size in Model.Sizes)
                         {
                             // @Html.RadioButtonFor(m => m.SelectedSize, size.Size, new { Name="radio"} )
                             @Html.RadioButtonFor(m => m.SelectedSize, size.Size, new Dictionary<string, object> {
@@ -66,8 +66,9 @@
                     <td align="right" width="100" class="text-white contur" style="font-weight: normal">
                         Pizza costs:
                     </td>
-                    <td id="CurrentPrice" align="left" width="100" class="text-white" style="padding:5px 10px">
-                        @Model.FinalPrice
+                    <td align="left" width="100" class="text-white" style="padding:5px 10px">
+                        <div id="CurrentPrice" style="display:inline-block">@Model.FinalPrice</div> 
+                        <div style="display:inline-block">$</div>
                     </td>
                     
                 </tr>
