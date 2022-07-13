@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using PizzaApp.Models;
 using PizzaApp.Repository;
+using PizzaApp.Repository.Entities;
 
 namespace PizzaApp.Controllers
 {
@@ -88,16 +89,15 @@ namespace PizzaApp.Controllers
 
 
 
-
+        
 
         [HttpPost]
         public ActionResult CreatedPizza(CreatePizzaViewModel createdPizza)
         {
             if (ModelState.IsValid)
             {
+               
                 var totalPrice = createdPizza.FinalPrice;
-
-
 
                 var selectedIngredients = new List<IngredientViewModel>();
 
@@ -118,11 +118,23 @@ namespace PizzaApp.Controllers
                     }
                 }
 
+                string g = Guid.NewGuid().ToString();
+                foreach (var ingredient in selectedIngredients)
+                {
+                    var customPizzaEntity = new CustomPizzaIngredientsEntity()
+                    {
+                        CustomPizzaId = g,
+                        Name = createdPizza.Name,
+                        IngredientId = ingredient.Id
+                    };
+                    _repository.AddCustomPizza(customPizzaEntity);
+                }
+
                 var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
                 var customerPizza = new OrderViewModel()
                 {
                     Id = ++(_repository.GetAllOrders().Last().Id),
-                   //PizzaId = ++(_repository.GetAllPizzas().Last().PizzaID) + (_repository.GetAllOrders().Last().Id),
+                   CustomPizzaId = g,
                     PizzaName = createdPizza.Name,
                     //PizzaImage = "Bismarck.jpg",
                     PizzaImage = createdPizzaImage,

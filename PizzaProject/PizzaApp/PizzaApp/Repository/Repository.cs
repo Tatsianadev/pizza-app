@@ -320,64 +320,79 @@ namespace PizzaApp.Repository
         }
 
 
-        //SizePrice
-        //public SizesPricesEntity AddPriceSize(SizesPricesEntity sizePrice)
-        //{
-        //    if (sizePrice == null)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+        //CustomPizzaInfredients
+        public CustomPizzaIngredientsEntity AddCustomPizza(CustomPizzaIngredientsEntity customPizza)
+        {
+            try
+            {
+                if (customPizza == null)
+                {
+                    throw new NotImplementedException();
+                }
 
-        //    _context.SizePrice.Add(sizePrice);
-        //    _context.SaveChanges();
-        //    return sizePrice;
-        //}
+                _context.CustomPizzaIngredients.Add(customPizza);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
 
-        //public bool DeletePriceSize(SizesPricesEntity sizePrice)
-        //{
-        //    if (sizePrice == null)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+                throw e;
+            }
+            return customPizza;
+        }
 
-        //    _context.SizePrice.Remove(sizePrice);
-        //    _context.SaveChanges();
-        //    return true;
-        //}
+        public bool DeleteCustomPizza(CustomPizzaIngredientsEntity customPizza)
+        {
+            if (customPizza == null)
+            {
+                throw new NotImplementedException();
+            }
 
-        //public IEnumerable<SizesPricesEntity> GetAllSizesPrices()
-        //{
-        //    var sizesPrices = _context.SizePrice.ToList();
-        //    return sizesPrices;
-        //}
+            try
+            {
+                _context.CustomPizzaIngredients.Remove(customPizza);
+                _context.SaveChanges();
+            }
+            catch (Exception e)
+            {
 
-        //public SizesPricesEntity GetPriceBySize(string size)
-        //{
-        //    var price = _context.SizePrice.FirstOrDefault(x => x.Size == size);
-        //    return price;
-        //}
+                throw;
+            }
 
-        
-        //public bool UpdatePriceSize(SizesPricesEntity oldSizePrice, SizesPricesEntity newSizePrice)
-        //{
-        //    if (newSizePrice == null)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+            return true;
+        }
 
-        //    var ud = _context.SizePrice.Find(oldSizePrice);
-        //    if (ud == null)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
+        public IEnumerable<CustomPizzaIngredientsEntity> GetAllCustomPizzas()
+        {
+            var customPizzas = _context.CustomPizzaIngredients.ToList();
+            return customPizzas;
+        }
 
-        //    _context.SizePrice.Remove(oldSizePrice);
-        //    _context.SizePrice.Add(newSizePrice);
-        //    _context.SaveChanges();
-        //    return true;
-        //}
+        public CustomPizzaIngredientsEntity GetCustomPizza(string customPizzaId)
+        {
+            var customPizza = _context.CustomPizzaIngredients.FirstOrDefault(x => x.CustomPizzaId == customPizzaId);
+            return customPizza;
+        }
 
-       
+        public bool UpdateCustomPizza(CustomPizzaIngredientsEntity oldCustomPizza, CustomPizzaIngredientsEntity newCustomPizza)
+        {
+            if (newCustomPizza == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            var ud = _context.CustomPizzaIngredients.Find(oldCustomPizza);
+            if (ud == null)
+            {
+                throw new NotImplementedException();
+            }
+
+            _context.CustomPizzaIngredients.Remove(oldCustomPizza);
+            _context.CustomPizzaIngredients.Add(newCustomPizza);
+            _context.SaveChanges();
+            return true;
+        }
+
     }
 }
 

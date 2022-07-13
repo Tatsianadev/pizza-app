@@ -40,8 +40,14 @@ namespace PizzaApp.Repository
         bool DeleteSize(SizeEntity size);
         bool UpdateSize(SizeEntity oldSize, SizeEntity newSize);
 
-       
 
-        
+
+        IEnumerable<CustomPizzaIngredientsEntity> GetAllCustomPizzas();
+        CustomPizzaIngredientsEntity GetCustomPizza(string customPizzaId);
+        CustomPizzaIngredientsEntity AddCustomPizza(CustomPizzaIngredientsEntity customPizza);
+        bool DeleteCustomPizza(CustomPizzaIngredientsEntity customPizza);
+        bool UpdateCustomPizza(CustomPizzaIngredientsEntity oldCustomPizza, CustomPizzaIngredientsEntity newCustomPizza);
+
+
     }
 }

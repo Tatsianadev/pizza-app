@@ -25,6 +25,8 @@ namespace PizzaApp.Models
         [Key]
         public int Id { get; set; }
 
+        public  string CustomPizzaId { get; set; }
+
         public string PizzaName { get; set; }
 
         public string PizzaImage { get; set; }

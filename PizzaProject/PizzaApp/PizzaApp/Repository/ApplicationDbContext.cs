@@ -19,7 +19,7 @@ namespace PizzaApp.Repository
         public DbSet<OrderEntity> Order { get; set; }
         public DbSet<IngredientEntity> Ingredients { get; set; }
 
-        public DbSet<CustomerPizzaEntity> CustomerPizza { get; set; }
+        public DbSet<CustomPizzaIngredientsEntity> CustomPizzaIngredients { get; set; }
 
 
         public ApplicationDbContext() :

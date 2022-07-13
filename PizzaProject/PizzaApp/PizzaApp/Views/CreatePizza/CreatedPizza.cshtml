@@ -73,7 +73,7 @@
                 You're cool chef!
             </div>
             <form>
-                <a href="@Url.Action("CreatePizza","CreatePizza")" class="btn btn-secondary mt-2" onclick="AddCreatedPizzaToOrder(@Model.Id)">Add pizza to order</a>
+                <a href="@Url.Action("CreatePizza","CreatePizza")" class="btn btn-secondary mt-2" onclick="AddCreatedPizzaToOrder(@Model.CustomPizzaId)">Add pizza to order</a>
                 @*<button class="btn btn-secondary mt-2" onclick="AddCreatedPizzaToOrder(@Model.Id, @Model.PizzaId)">Add pizza to order</button>*@
                 <a href="@Url.Action("CreatePizza","CreatePizza")" class="btn btn-secondary mt-2">Cancel</a>
                
