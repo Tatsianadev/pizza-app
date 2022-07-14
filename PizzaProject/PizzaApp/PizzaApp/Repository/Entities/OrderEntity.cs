@@ -30,6 +30,8 @@ namespace PizzaApp.Repository.Entities
         public int Id { get; set; }
         public int PizzaId { get; set; }
 
+        public PizzaEntity PizzaEntity { get; set; }
+
         public string CustomPizzaId { get; set; }
 
         public int SizeId { get; set; }

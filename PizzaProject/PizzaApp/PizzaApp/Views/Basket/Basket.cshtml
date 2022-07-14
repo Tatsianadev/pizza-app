@@ -45,19 +45,21 @@
                 <th>
                     <form method="post">
                         <input type="hidden" value="@order.Id" name="Id" />
-                        <button  type="submit"  class="btn btn-dark" @*onclick="deleteOrder(@order.Id)"*@ >X</button>
+                        <button type="submit" class="btn btn-dark" @*onclick="deleteOrder(@order.Id)"*@>X</button>
                     </form>
                 </th>
             </tr>
 
         }
+
+       
     </tbody>
 
 
 </table>
 <div class="d-grid gap-2 col-6 mx-auto">
     <a href="@Url.Action("ThankYou","Basket")" class="btn btn-dark mt-2">Confirm order</a>
-    </div>
+</div>
 
 
 

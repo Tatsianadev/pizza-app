@@ -48,6 +48,7 @@ namespace PizzaApp.Repository
         bool DeleteCustomPizza(CustomPizzaIngredientsEntity customPizza);
         bool UpdateCustomPizza(CustomPizzaIngredientsEntity oldCustomPizza, CustomPizzaIngredientsEntity newCustomPizza);
 
+        int GetCustomPizzaPrice(string customPizzaId);
 
     }
 }

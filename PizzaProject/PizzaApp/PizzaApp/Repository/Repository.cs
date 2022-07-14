@@ -393,6 +393,22 @@ namespace PizzaApp.Repository
             return true;
         }
 
+        public int GetCustomPizzaPrice(string customPizzaId)
+        {
+            var customPizzas = _context.CustomPizzaIngredients.ToList();
+            int SumIngredientsPrice = 0;
+            foreach (var item in customPizzas)
+            {
+                if (item.CustomPizzaId==customPizzaId)
+                {
+                    var ingredientId = item.IngredientId;
+                    var indredientPrice= _context.Ingredients.FirstOrDefault(x => x.Id == ingredientId).Price;
+                    SumIngredientsPrice += indredientPrice;
+                }
+            }
+            return SumIngredientsPrice;
+        }
+
     }
 }
 

@@ -152,14 +152,16 @@ namespace PizzaApp.APIControllers
         public async Task<string> AddCreatedPizzaToOrder(string customPizzaId, string size, string userName)
         {
             ApplicationUser user = await UserManager.FindByNameAsync(userName);
-            var id = user.Id;
+            var userId = user.Id;
 
             var SizeId = _repository.GetSizeId(size).SizeID;
+            var pizzaId = _repository.GetAllPizzas().Where(x => x.PizzaName == "CustomerPizza").FirstOrDefault().PizzaID;
             var createdPizza = new OrderEntity()
             {
+                PizzaId=pizzaId,
                CustomPizzaId=customPizzaId,
                 SizeId = SizeId,
-                ApplicationUserId=id
+                ApplicationUserId= userId
             };
             _repository.AddOrder(createdPizza);
             return "pizza added to order";

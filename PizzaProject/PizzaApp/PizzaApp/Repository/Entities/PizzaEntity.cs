@@ -13,6 +13,7 @@ namespace PizzaApp.Repository.Entities
         public PizzaEntity()
         {
             this.PizzaPrices = new HashSet<PriceEntity>();
+            this.Orders=new HashSet<OrderEntity>();
         }
 
         [Key]
@@ -21,5 +22,7 @@ namespace PizzaApp.Repository.Entities
         public string ImageFile { get; set; }
 
         public virtual ICollection<PriceEntity> PizzaPrices { get; set; }
+
+        public virtual ICollection<OrderEntity> Orders { get; set; }
     }
 }
