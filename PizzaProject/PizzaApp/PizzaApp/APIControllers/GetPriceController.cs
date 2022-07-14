@@ -147,19 +147,19 @@ namespace PizzaApp.APIControllers
 
         //Переделать для Created Pizza после изменения таблицы orders (код был рабочим до изменения orders) 
 
-        [HttpPost]
+        [HttpGet]
 
-        public string AddCreatedPizzaToOrder(int Id, string Name, string Size, int Price)
+        public async Task<string> AddCreatedPizzaToOrder(string customPizzaId, string size, string userName)
         {
+            ApplicationUser user = await UserManager.FindByNameAsync(userName);
+            var id = user.Id;
 
-            //var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
-            var PizzaId = ++(_repository.GetAllPizzas().Last().PizzaID) + (_repository.GetAllOrders().Last().Id);
-            var SizeId = _repository.GetSizeId(Size).SizeID;
+            var SizeId = _repository.GetSizeId(size).SizeID;
             var createdPizza = new OrderEntity()
             {
-                Id = Id,
-                PizzaId = PizzaId,
-                SizeId = SizeId
+               CustomPizzaId=customPizzaId,
+                SizeId = SizeId,
+                ApplicationUserId=id
             };
             _repository.AddOrder(createdPizza);
             return "pizza added to order";

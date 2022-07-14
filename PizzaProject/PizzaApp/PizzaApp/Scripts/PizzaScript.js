@@ -99,19 +99,17 @@ function CountPrice() {
 
 
 
-function AddCreatedPizzaToOrder(id) {
-    //var id = document.getElementById("id_order").textContent;
-    var id = id;
-    //var idPizza = document.getElementById("id_pizza").textContent;
-    //var idPizza = idPizza;
+function AddCreatedPizzaToOrder(customPizzaId, userName) {
+
+    var custompizzaid = customPizzaId;
+   
     //var image = image;
-    var name = document.getElementById("name").textContent;
+    //var name = document.getElementById("name").textContent;
     var size = document.getElementById("size").textContent;
-    var price = document.getElementById("price").textContent;
-    alert(id);
-    $.post(`https://localhost:44326/GetPrice/addcreatedpizzatoorder`,
-        { Id: id, Name: name, Size: size, Price: price }).
-        done(function (data) {
+    //var price = document.getElementById("price").textContent;
+    //alert(id);
+    $.get(`https://localhost:44326/GetPrice/addcreatedpizzatoorder?customPizzaId=${custompizzaid}&size=${size}&userName=${userName}`,
+        function (data) {
             alert(data);
         });
 
