@@ -166,7 +166,7 @@ namespace PizzaApp.Repository
 
                 throw;
             }
-            
+
             return true;
         }
 
@@ -393,23 +393,95 @@ namespace PizzaApp.Repository
             return true;
         }
 
-        public int GetCustomPizzaPrice(string customPizzaId)
+        public int GetIngredientsPrice(string customPizzaId)
         {
             var customPizzas = _context.CustomPizzaIngredients.ToList();
             int SumIngredientsPrice = 0;
             foreach (var item in customPizzas)
             {
-                if (item.CustomPizzaId==customPizzaId)
+                if (item.CustomPizzaId == customPizzaId)
                 {
                     var ingredientId = item.IngredientId;
-                    var indredientPrice= _context.Ingredients.FirstOrDefault(x => x.Id == ingredientId).Price;
+                    var indredientPrice = _context.Ingredients.FirstOrDefault(x => x.Id == ingredientId).Price;
                     SumIngredientsPrice += indredientPrice;
                 }
             }
             return SumIngredientsPrice;
         }
 
+        public List<IngredientEntity> GetListIngredients(string customPizzaId)
+        {
+            var customPizzas = _context.CustomPizzaIngredients.ToList();
+            List<IngredientEntity> ingredients = new List<IngredientEntity>();
+            foreach (var item in customPizzas)
+            {
+                if (item.CustomPizzaId== customPizzaId)
+                {
+                    var indredientId = item.IngredientId;
+                    IngredientEntity ingredient = GetIngredient(indredientId);
+                    ingredients.Add(ingredient);
+
+                }
+            }
+            return ingredients;
+        }
+
+
+        public List<OrderDetailsEntity> GetOrderDetails()
+        {
+            var orderDetails = _context.Order
+                .Join(
+                _context.Pizza,
+                order => order.PizzaId,
+                pizza => pizza.PizzaID,
+                (order, pizza) => new
+                {
+                    Id = order.Id,
+                    PizzaId = pizza.PizzaID,
+                    CustomPizzaId = order.CustomPizzaId,
+                    Name = pizza.PizzaName,
+                    PizzaImage = pizza.ImageFile,
+                    SizeId = order.SizeId
+                }
+                )
+                .Join(
+                _context.PizzaSize,
+                order => order.SizeId,
+                size => size.SizeID,
+                (order, size) => new
+                {
+                    Id = order.Id,
+                    PizzaId = order.PizzaId,
+                    CustomPizzaId = order.CustomPizzaId,
+                    Name = order.Name,
+                    PizzaImage = order.PizzaImage,
+                    Size = size.Size,
+                    SizeID = order.SizeId
+                }
+                )
+                .Join(
+                _context.PizzaPrice,
+                order => new { x1 = order.PizzaId, x2 = order.SizeID },
+                price => new { x1 = price.PizzaID, x2 = price.SizeID },
+                (order, price) => new OrderDetailsEntity()
+                {
+                    Id = order.Id,
+                    PizzaId = order.PizzaId,
+                    CustomPizzaId = order.CustomPizzaId,
+                    Name = order.Name,
+                    PizzaImage = order.PizzaImage,
+                    Size = order.Size,
+                    //Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),
+                    Price = price.Price,
+                    //Ingredients =GetListIngredients(order.CustomPizzaId)
+                }
+                ).ToList();
+
+            return orderDetails;
+
+           
+        }
+
     }
 }
 
-       

@@ -8,8 +8,7 @@ namespace PizzaApp.Models
 {
     public class BasketViewModel
     {
-        public List<OrderViewModel> Orders { get; set; }
-        public List<OrderViewModel> CustomOrders { get; set; }
+        public List<OrderViewModel> Orders { get; set; }      
         public int FinalPrice { get; set; }
     }
 }

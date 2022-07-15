@@ -36,9 +36,9 @@ namespace PizzaApp.Repository.Entities
 
         public int SizeId { get; set; }
         
-        //public int CustomerPizzaId { get; set; }
-
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+
+        //public virtual ICollection<CustomPizzaIngredientsEntity> CustomPizzaIngredientsEntities { get; set; }
     }
 }
