@@ -80,14 +80,13 @@ namespace PizzaApp.Controllers
                 Size = entity.Size,
                 PizzaImage = entity.PizzaImage,
                 PizzaPrice = entity.Price,
-                Ingredients = entity.Ingredients.Select(x => new IngredientViewModel()
+                Ingredients = entity.Ingredients?.Select(x => new IngredientViewModel()
                 {
                     Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
                     Image = x.Image
                 }).ToList()
-
             });
           
 

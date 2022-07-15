@@ -471,9 +471,8 @@ namespace PizzaApp.Repository
                     Name = order.Name,
                     PizzaImage = order.PizzaImage,
                     Size = order.Size,
-                    //Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),
-                    Price = price.Price,
-                    //Ingredients =GetListIngredients(order.CustomPizzaId)
+                    Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),                    
+                    Ingredients =GetListIngredients(order.CustomPizzaId)
                 }
                 ).ToList();
 
