@@ -415,7 +415,7 @@ namespace PizzaApp.Repository
             List<IngredientEntity> ingredients = new List<IngredientEntity>();
             foreach (var item in customPizzas)
             {
-                if (item.CustomPizzaId== customPizzaId)
+                if (item.CustomPizzaId == customPizzaId)
                 {
                     var indredientId = item.IngredientId;
                     IngredientEntity ingredient = GetIngredient(indredientId);
@@ -471,8 +471,9 @@ namespace PizzaApp.Repository
                     Name = order.Name,
                     PizzaImage = order.PizzaImage,
                     Size = order.Size,
-                    Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),                    
-                    Ingredients =GetListIngredients(order.CustomPizzaId)
+                    //Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),
+                    Price = price.Price,
+                    //Ingredients = GetListIngredients(order.CustomPizzaId)
                 }
                 ).ToList();
 

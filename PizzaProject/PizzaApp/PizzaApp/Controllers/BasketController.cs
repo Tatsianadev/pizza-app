@@ -79,14 +79,15 @@ namespace PizzaApp.Controllers
                 PizzaName = entity.Name,
                 Size = entity.Size,
                 PizzaImage = entity.PizzaImage,
-                PizzaPrice = entity.Price,
-                Ingredients = entity.Ingredients?.Select(x => new IngredientViewModel()
+                PizzaPrice = entity.Price + _repository.GetIngredientsPrice(entity.CustomPizzaId),
+                Ingredients=_repository.GetListIngredients(entity.CustomPizzaId)?.Select(x => new IngredientViewModel()
                 {
                     Id = x.Id,
                     Name = x.Name,
                     Price = x.Price,
                     Image = x.Image
-                }).ToList()
+                }
+            ).ToList()
             });
           
 
