@@ -99,17 +99,42 @@ function CountPrice() {
 
 
 
+//function AddCreatedPizzaToOrder(customPizzaId, userName) {
+
+//    var custompizzaid = customPizzaId;
+      
+//    var name = document.getElementById("name").textContent;
+//    var size = document.getElementById("size").textContent;
+    
+    
+//    $.get(`https://localhost:44326/GetPrice/addcreatedpizzatoorder?customPizzaId=${custompizzaid}&size=${size}&userName=${userName}`,
+//        function (data) {
+//            alert(data);
+//        });
+
+//}
+
+
 function AddCreatedPizzaToOrder(customPizzaId, userName) {
 
     var custompizzaid = customPizzaId;
-   
-    //var image = image;
-    //var name = document.getElementById("name").textContent;
+    var arr = [];
+    var arrIngr = [];
+
+    arr = document.querySelectorAll("#ingredient");
+    arr.forEach(function (item, index) {
+        var ingredient = item.textContent;
+        arrIngr.push(ingredient);
+    });
+
+
+    var name = document.getElementById("name").textContent;
     var size = document.getElementById("size").textContent;
-    //var price = document.getElementById("price").textContent;
+
     //alert(id);
-    $.get(`https://localhost:44326/GetPrice/addcreatedpizzatoorder?customPizzaId=${custompizzaid}&size=${size}&userName=${userName}`,
-        function (data) {
+    $.post(`https://localhost:44326/GetPrice/addcreatedpizzatoorder`,
+        { customPizzaId: custompizzaid, name: name, size: size, userName: userName, 'ingredients[]':arrIngr }).
+        done(function (data) {
             alert(data);
         });
 
