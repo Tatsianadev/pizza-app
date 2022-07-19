@@ -185,6 +185,20 @@ namespace PizzaApp.APIControllers
                 ApplicationUserId = userId
             };
             _repository.AddOrder(createdPizza);
+
+            foreach (var item in ingredients)
+            {
+                var ingrId = _repository.GetAllIngredients().FirstOrDefault(x => x.Name == item.ToString()).Id;
+                var pizzaIngredient = new CustomPizzaIngredientsEntity()
+                {
+                    CustomPizzaId = customPizzaId,
+                    IngredientId = ingrId,
+                    Name = name
+                };
+                _repository.AddCustomPizza(pizzaIngredient);
+
+            }
+
             return "pizza added to order";
         }
     }
