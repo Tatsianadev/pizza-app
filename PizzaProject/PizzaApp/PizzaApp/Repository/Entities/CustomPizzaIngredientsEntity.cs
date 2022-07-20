@@ -10,9 +10,14 @@ namespace PizzaApp.Repository.Entities
     [Table("CustomPizzaIngredients")]
     public class CustomPizzaIngredientsEntity
     {
+       
         [Key]
         public int Id { get; set; }
-       
+
+        public int OrderId { get; set; }
+
+        public OrderEntity Order { get; set; }
+
         public string CustomPizzaId { get; set; }
         public string Name { get; set; }
 

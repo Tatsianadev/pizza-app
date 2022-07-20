@@ -175,22 +175,24 @@ namespace PizzaApp.APIControllers
             ApplicationUser user = await UserManager.FindByNameAsync(userName);
             var userId = user.Id;
 
-            var SizeId = _repository.GetSizeId(size).SizeID;
+            var sizeId = _repository.GetSizeId(size).SizeID;
             var pizzaId = _repository.GetAllPizzas().Where(x => x.PizzaName == "CustomerPizza").FirstOrDefault().PizzaID;
             var createdPizza = new OrderEntity()
             {
                 PizzaId = pizzaId,
                 CustomPizzaId = customPizzaId,
-                SizeId = SizeId,
+                SizeId = sizeId,
                 ApplicationUserId = userId
             };
             _repository.AddOrder(createdPizza);
 
+            
             foreach (var item in ingredients)
             {
                 var ingrId = _repository.GetAllIngredients().FirstOrDefault(x => x.Name == item.ToString()).Id;
                 var pizzaIngredient = new CustomPizzaIngredientsEntity()
                 {
+                    OrderId=createdPizza.Id,
                     CustomPizzaId = customPizzaId,
                     IngredientId = ingrId,
                     Name = name

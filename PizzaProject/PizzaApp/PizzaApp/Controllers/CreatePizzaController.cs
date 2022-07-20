@@ -136,7 +136,6 @@ namespace PizzaApp.Controllers
                     //Id = ++(_repository.GetAllOrders().Last().Id),
                     CustomPizzaId = g,
                     PizzaName = createdPizza.Name,
-                    //PizzaImage = "Bismarck.jpg",
                     PizzaImage = createdPizzaImage,
                     Size = createdPizza.SelectedSize,
                     PizzaPrice = totalPrice,

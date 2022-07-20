@@ -26,6 +26,11 @@ namespace PizzaApp.Repository.Entities
     [Table("Orders")]
     public class OrderEntity
     {
+        public OrderEntity()
+        {
+            this.CustomPizzaIngredients = new HashSet<CustomPizzaIngredientsEntity>();
+        }
+
         [Key]
         public int Id { get; set; }
         public int PizzaId { get; set; }
@@ -39,6 +44,6 @@ namespace PizzaApp.Repository.Entities
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
 
-        //public virtual ICollection<CustomPizzaIngredientsEntity> CustomPizzaIngredientsEntities { get; set; }
+        public virtual ICollection<CustomPizzaIngredientsEntity> CustomPizzaIngredients { get; set; }
     }
 }
