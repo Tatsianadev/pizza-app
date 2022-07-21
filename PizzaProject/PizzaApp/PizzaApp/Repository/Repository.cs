@@ -441,7 +441,8 @@ namespace PizzaApp.Repository
                     CustomPizzaId = order.CustomPizzaId,
                     Name = pizza.PizzaName,
                     PizzaImage = pizza.ImageFile,
-                    SizeId = order.SizeId
+                    SizeId = order.SizeId,
+                    ApplicationUserId=order.ApplicationUserId
                 }
                 )
                 .Join(
@@ -456,7 +457,8 @@ namespace PizzaApp.Repository
                     Name = order.Name,
                     PizzaImage = order.PizzaImage,
                     Size = size.Size,
-                    SizeID = order.SizeId
+                    SizeID = order.SizeId,
+                    ApplicationUserId = order.ApplicationUserId
                 }
                 )
                 .Join(
@@ -471,11 +473,30 @@ namespace PizzaApp.Repository
                     Name = order.Name,
                     PizzaImage = order.PizzaImage,
                     Size = order.Size,
+                    ApplicationUserId = order.ApplicationUserId,
                     //Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),
-                    Price = price.Price,
+                    Price = price.Price
                     //Ingredients = GetListIngredients(order.CustomPizzaId)
                 }
-                ).ToList();
+                )
+                //.Join(
+                //_context.CustomPizzaIngredients,
+                //order => order.Id,
+                //ingredient => ingredient.OrderId,
+                //(order, ingredient) => new OrderDetailsEntity()
+                //{
+                //    Id = order.Id,
+                //    PizzaId = order.PizzaId,
+                //    CustomPizzaId = order.CustomPizzaId,
+                //    Name = order.Name,
+                //    PizzaImage = order.PizzaImage,
+                //    Size = order.Size,
+                //    //Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),
+                //    Price = order.Price,
+                //    Ingredients =
+                //}
+                //)
+                .ToList();
 
             return orderDetails;
 

@@ -125,8 +125,7 @@
                     @foreach (var ingredient in Model.Ingredients)
                     {
                     <div id="ingredient">@ingredient.Name</div>
-                        @*@ingredient.Name;*@
-                        <br />
+                        @*@ingredient.Name;*@                       
                     }
                 </td>
             </tr>
@@ -152,6 +151,9 @@
             <br />
             You're cool chef!
         </div>
+        @*<div class="text-center">
+            <h3 id="answer">Pizza added to Basket</h3>>
+        </div>*@
         <form>
             @if (User.Identity.IsAuthenticated)
             {

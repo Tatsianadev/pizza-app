@@ -18,36 +18,7 @@ namespace PizzaApp.Controllers
             _repository = repository;
         }
 
-        // GET: CreatePizza
-        //public ActionResult CreatePizza()
-        //{
-        //    var sizesPricesEntity = _repository.GetAllSizesPrices();
-        //    var sizePrice = sizesPricesEntity.Select(entity => new SizesPrizesViewModel()
-        //    {
-        //        Id = entity.Id,
-        //        Size = entity.Size,
-        //        Price=entity.Price
-        //    }).ToList();
-
-        //    var ingredientsEntity = _repository.GetAllIngredients();
-        //    var ingredients = ingredientsEntity.Select(entity => new IngredientViewModel()
-        //    {
-        //        Id = entity.Id,
-        //        Name = entity.Name,
-        //        Price = entity.Price,
-        //        Image = entity.Image,
-
-        //    }).ToList();
-
-        //    CreatePizzaViewModel createModel = new CreatePizzaViewModel()
-        //    {
-        //        SizePrice = sizePrice,
-        //        Ingredients = ingredients,
-        //        FinalPrice=sizePrice.FirstOrDefault(x=>x.Size=="small").Price
-        //    };
-
-        //    return View(createModel);
-        //}
+      
 
         public ActionResult CreatePizza()
         {
@@ -106,7 +77,6 @@ namespace PizzaApp.Controllers
                     if (ingredient.Ticked == true)
                     {
                         var dataIngredient = _repository.GetIngredient(ingredient.Id);
-                        // totalPrice += dataIngredient.Price;
                         var selectedIngredient = new IngredientViewModel()
                         {
                             Id = dataIngredient.Id,
@@ -119,21 +89,10 @@ namespace PizzaApp.Controllers
                 }
 
                 string g = Guid.NewGuid().ToString();
-                //foreach (var ingredient in selectedIngredients)
-                //{
-                //    var customPizzaEntity = new CustomPizzaIngredientsEntity()
-                //    {
-                //        CustomPizzaId = g,
-                //        Name = createdPizza.Name,
-                //        IngredientId = ingredient.Id
-                //    };
-                //    _repository.AddCustomPizza(customPizzaEntity);
-                //}
 
                 var createdPizzaImage = ConfigurationManager.AppSettings["CreatedPizzaImage"];
                 var customerPizza = new OrderViewModel()
                 {
-                    //Id = ++(_repository.GetAllOrders().Last().Id),
                     CustomPizzaId = g,
                     PizzaName = createdPizza.Name,
                     PizzaImage = createdPizzaImage,

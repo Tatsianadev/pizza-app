@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 using PizzaApp.Models;
+using PizzaApp.Models.Identity;
 using PizzaApp.Repository;
 using PizzaApp.Repository.Entities;
 
@@ -17,61 +21,23 @@ namespace PizzaApp.Controllers
         {
             _repository = repository;
         }
-        // GET: Basket
-        //public ActionResult Basket()
-        //{
-        //    var orders = _repository.GetAllOrders();
-        //    var orderModel = orders.Select(entity => new OrderViewModel()
-        //    {
-        //        Id= entity.Id,
-        //        PizzaId= entity.PizzaId,
-        //        PizzaImage= entity.PizzaImage,
-        //        PizzaName=entity.PizzaName,
-        //        PizzaPrice=entity.PizzaPrice,
-        //        Size = entity.Size
-        //    });
-        //    var sum = 0;
-        //    sum = (int)orderModel.Select(x => x.PizzaPrice).Sum();
-          
-        //    BasketViewModel basketModel=new BasketViewModel()
-        //    {
-        //        Orders = orderModel.ToList(),
-        //        FinalPrice = sum
-        //    };
-        //    ViewBag.Counter = 1;
-        //    return View(basketModel);
-        //}
 
-        public ActionResult Basket()
+        private ApplicationUserManager UserManager
         {
-            //var pizzas = _repository.GetAllPizzas();
-            //var sizes = _repository.GetAllSizes();
-            //var prices = _repository.GetAllPrices();
-            //var orders = _repository.GetAllOrders();
-            //var customPizzas = _repository.GetAllCustomPizzas();
-
-            //var orderModel = from order in orders
-            //                 join pizza in pizzas on order.PizzaId equals pizza.PizzaID into table1
-            //                 from pizza in table1.DefaultIfEmpty().ToList()
-            //                 join size in sizes on order.SizeId equals size.SizeID into table2
-            //                 from size in table2.DefaultIfEmpty()
-            //                 join price in prices on
-            //                 new { x1 = order.PizzaId, x2 = order.SizeId } equals
-            //                 new { x1 = price.PizzaID, x2 = price.SizeID } into table3
-            //                 from price in table3.DefaultIfEmpty()
-
-            //                 select new OrderViewModel()
-            //                 {
-            //                     Id = order.Id,
-            //                     PizzaName = pizza.PizzaName,
-            //                     PizzaImage = pizza.ImageFile,
-            //                     Size = size.Size,
-            //                     PizzaPrice = price.Price + _repository.GetIngredientsPrice(order.CustomPizzaId)
-
-            //                 };
+            get
+            {
+                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+        }
 
 
-            var orderDetails = _repository.GetOrderDetails();
+        public async Task<ActionResult> Basket()
+        {
+            ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
+            var userId = user.Id;
+
+            //var orderDetails = _repository.GetOrderDetails().Select(x=>x.ApplicationUserId==userId).ToList();
+            var orderDetails = _repository.GetOrderDetails().Where(x => x.ApplicationUserId == userId).ToList();
             var orderModel = orderDetails.Select(entity => new OrderViewModel()
             {
                 Id = entity.Id,
@@ -89,15 +55,13 @@ namespace PizzaApp.Controllers
                 }
             ).ToList()
             });
-          
 
             var finalPrice = 0;
             finalPrice = orderDetails.Select(x => x.Price).Sum();
 
-
             BasketViewModel basketModel = new BasketViewModel()
             {
-                Orders = orderModel.ToList(),
+               Orders = orderModel.ToList(),
                FinalPrice = finalPrice
             };
 

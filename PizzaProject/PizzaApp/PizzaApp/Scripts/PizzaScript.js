@@ -99,22 +99,6 @@ function CountPrice() {
 
 
 
-//function AddCreatedPizzaToOrder(customPizzaId, userName) {
-
-//    var custompizzaid = customPizzaId;
-      
-//    var name = document.getElementById("name").textContent;
-//    var size = document.getElementById("size").textContent;
-    
-    
-//    $.get(`https://localhost:44326/GetPrice/addcreatedpizzatoorder?customPizzaId=${custompizzaid}&size=${size}&userName=${userName}`,
-//        function (data) {
-//            alert(data);
-//        });
-
-//}
-
-
 function AddCreatedPizzaToOrder(customPizzaId, userName) {
 
     var custompizzaid = customPizzaId;
@@ -135,7 +119,7 @@ function AddCreatedPizzaToOrder(customPizzaId, userName) {
     $.post(`https://localhost:44326/GetPrice/addcreatedpizzatoorder`,
         { customPizzaId: custompizzaid, name: name, size: size, userName: userName, 'ingredients[]':arrIngr }).
         done(function (data) {
-            alert(data);
+            alert("Pizza added to Basket");
         });
 
 }
