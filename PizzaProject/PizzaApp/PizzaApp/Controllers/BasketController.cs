@@ -36,7 +36,6 @@ namespace PizzaApp.Controllers
             ApplicationUser user = await UserManager.FindByNameAsync(User.Identity.Name);
             var userId = user.Id;
 
-            //var orderDetails = _repository.GetOrderDetails().Select(x=>x.ApplicationUserId==userId).ToList();
             var orderDetails = _repository.GetOrderDetails().Where(x => x.ApplicationUserId == userId).ToList();
             var orderModel = orderDetails.Select(entity => new OrderViewModel()
             {

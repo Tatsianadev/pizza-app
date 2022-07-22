@@ -20,5 +20,6 @@ namespace PizzaApp.Repository.Entities
         public List<IngredientEntity> Ingredients { get; set; }
         public int Price { get; set; }
         public string ApplicationUserId { get; set; }
+       
     }
 }

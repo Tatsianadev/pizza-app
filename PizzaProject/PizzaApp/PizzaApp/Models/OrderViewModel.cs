@@ -27,7 +27,7 @@ namespace PizzaApp.Models
 
         public string CustomPizzaId { get; set; }
 
-        public string PizzaName { get; set; }
+        public string PizzaName { get; set; }       
 
         public string PizzaImage { get; set; }
 

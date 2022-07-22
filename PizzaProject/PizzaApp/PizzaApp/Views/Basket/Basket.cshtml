@@ -32,23 +32,23 @@
         {
             var itemImage = "/Content/images/" + (order.PizzaImage);
             var counter = @ViewBag.Counter++;
-            <tr>
-                @*<th>@order.Id</th>*@
-                <th>@counter</th>
-                <th>
-                    <img src="@itemImage" alt="" asp-append-version="true" class="orderImage" />
+        <tr>
+            @*<th>@order.Id</th>*@
+            <th>@counter</th>
+            <th>
+                <img src="@itemImage" alt="" asp-append-version="true" class="orderImage" />
 
-                </th>
-                <th>@order.PizzaName</th>
-                <th>@order.Size</th>
-                <th>@order.PizzaPrice $</th>
-                <th>
-                    <form method="post">
-                        <input type="hidden" value="@order.Id" name="Id" />
-                        <button type="submit" class="btn btn-dark" @*onclick="deleteOrder(@order.Id)"*@>X</button>
-                    </form>
-                </th>
-            </tr>
+            </th>
+             <th>@order.PizzaName</th>
+            <th>@order.Size</th>
+            <th>@order.PizzaPrice $</th>
+            <th>
+                <form method="post">
+                    <input type="hidden" value="@order.Id" name="Id" />
+                    <button type="submit" class="btn btn-dark" @*onclick="deleteOrder(@order.Id)"*@>X</button>
+                </form>
+            </th>
+        </tr>
 
         }
 

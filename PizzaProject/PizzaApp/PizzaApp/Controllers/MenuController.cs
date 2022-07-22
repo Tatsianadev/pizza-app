@@ -30,7 +30,7 @@ namespace PizzaApp.Controllers
                 ImageFile = entity.ImageFile,
                 PizzaPriceDefault = Repository.GetPrice(entity.PizzaID, sizeIdDefault).Price
 
-            });
+            }).Where(x=>x.PizzaName!="CustomerPizza");
 
 
             var pizzas = pizzaModels.ToList();

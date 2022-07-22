@@ -442,7 +442,7 @@ namespace PizzaApp.Repository
                     Name = pizza.PizzaName,
                     PizzaImage = pizza.ImageFile,
                     SizeId = order.SizeId,
-                    ApplicationUserId=order.ApplicationUserId
+                    ApplicationUserId = order.ApplicationUserId
                 }
                 )
                 .Join(
@@ -465,7 +465,7 @@ namespace PizzaApp.Repository
                 _context.PizzaPrice,
                 order => new { x1 = order.PizzaId, x2 = order.SizeID },
                 price => new { x1 = price.PizzaID, x2 = price.SizeID },
-                (order, price) => new OrderDetailsEntity()
+                (order, price) => new OrderDetailsEntity
                 {
                     Id = order.Id,
                     PizzaId = order.PizzaId,
@@ -478,12 +478,14 @@ namespace PizzaApp.Repository
                     Price = price.Price
                     //Ingredients = GetListIngredients(order.CustomPizzaId)
                 }
-                )
-                //.Join(
+                ).ToList();
+                
+            
+            //.Join(
                 //_context.CustomPizzaIngredients,
                 //order => order.Id,
                 //ingredient => ingredient.OrderId,
-                //(order, ingredient) => new OrderDetailsEntity()
+                //(order, ingredient) => new OrderDetailsEntity
                 //{
                 //    Id = order.Id,
                 //    PizzaId = order.PizzaId,
@@ -491,12 +493,21 @@ namespace PizzaApp.Repository
                 //    Name = order.Name,
                 //    PizzaImage = order.PizzaImage,
                 //    Size = order.Size,
-                //    //Price = price.Price + GetIngredientsPrice(order.CustomPizzaId),
+                //    ApplicationUserId = order.ApplicationUserId,
                 //    Price = order.Price,
-                //    Ingredients =
+                //    CustomPizzaName = ingredient.Name
                 //}
                 //)
-                .ToList();
+                
+
+            foreach (var item in orderDetails)
+            {
+                if (item.CustomPizzaId!=null)
+                {
+                    item.Name = _context.CustomPizzaIngredients.FirstOrDefault(x=>x.OrderId==item.Id).Name;
+                }
+
+            }
 
             return orderDetails;
 
